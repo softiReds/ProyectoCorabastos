@@ -29,15 +29,15 @@ CREATE TABLE Usuario(
 	telefono_usuario VARCHAR(10) NOT NULL,
 	direccion_usuario VARCHAR(100) NOT NULL,
 
-	CONSTRAINT FK_Ciudad FOREIGN KEY(id_ciudad) REFERENCES Ciudad(id_ciudad),
-	CONSTRAINT FK_TipoUsuario FOREIGN KEY(id_tipoUsuario) REFERENCES TipoUsuario(id_tipoUsuario)
+	CONSTRAINT FK_Ciudad_Usuario FOREIGN KEY(id_ciudad) REFERENCES Ciudad(id_ciudad),
+	CONSTRAINT FK_TipoUsuario_Usuario FOREIGN KEY(id_tipoUsuario) REFERENCES TipoUsuario(id_tipoUsuario)
 )
 
 CREATE TABLE Inventario(
 	id_inventario INT PRIMARY KEY IDENTITY(1,1),
 	id_vendedor INT NOT NULL,
 	
-	CONSTRAINT FK_Usuario FOREIGN KEY(id_vendedor) REFERENCES Usuario(id_usuario)
+	CONSTRAINT FK_Usuario_Inventario FOREIGN KEY(id_vendedor) REFERENCES Usuario(id_usuario)
 )
 
 CREATE TABLE CarritoCompras(
@@ -45,5 +45,21 @@ CREATE TABLE CarritoCompras(
 	id_cliente INT NOT NULL,
 	total_carritoCompras INT NOT NULL,
 	
-	CONSTRAINT FK_Usuario FOREIGN KEY(id_cliente) REFERENCES Usuario(id_usuario)
+	CONSTRAINT FK_Usuario_CarritoCompras FOREIGN KEY(id_cliente) REFERENCES Usuario(id_usuario)
+)
+
+CREATE TABLE Inventario_Producto(
+	id_inventario INT NOT NULL,
+	id_producto INT NOT NULL,
+	cantidad INT NOT NULL,
+	
+	CONSTRAINT PK_Inventario_Producto PRIMARY KEY(id_inventario, id_producto)
+)
+
+CREATE TABLE CarritoCompras_Producto(
+	id_carritoCompras INT NOT NULL,
+	id_producto INT NOT NULL,
+	cantidad INT NOT NULL,
+	
+	CONSTRAINT PK_CarritoCompras_Producto PRIMARY KEY(id_carritoCompras, id_producto)
 )
