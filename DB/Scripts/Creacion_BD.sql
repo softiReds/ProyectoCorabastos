@@ -33,3 +33,17 @@ CREATE TABLE Usuario(
 	CONSTRAINT FK_TipoUsuario FOREIGN KEY(id_tipoUsuario) REFERENCES TipoUsuario(id_tipoUsuario)
 )
 
+CREATE TABLE Inventario(
+	id_inventario INT PRIMARY KEY IDENTITY(1,1),
+	id_vendedor INT NOT NULL,
+	
+	CONSTRAINT FK_Usuario FOREIGN KEY(id_vendedor) REFERENCES Usuario(id_usuario)
+)
+
+CREATE TABLE CarritoCompras(
+	id_carritoCompras INT PRIMARY KEY IDENTITY(1,1),
+	id_cliente INT NOT NULL,
+	total_carritoCompras INT NOT NULL,
+	
+	CONSTRAINT FK_Usuario FOREIGN KEY(id_cliente) REFERENCES Usuario(id_usuario)
+)
