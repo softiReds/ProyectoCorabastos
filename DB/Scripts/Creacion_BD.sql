@@ -63,3 +63,21 @@ CREATE TABLE CarritoCompras_Producto(
 	
 	CONSTRAINT PK_CarritoCompras_Producto PRIMARY KEY(id_carritoCompras, id_producto)
 )
+
+CREATE TABLE EstadoPedido(
+    id_estadoPedido INT PRIMARY KEY IDENTITY(1,1),
+    descripcion_estadoPedido VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Pedido(
+    id_pedido INT PRIMARY KEY IDENTITY(1,1),
+    id_cliente INT NOT NULL,   
+    id_vendedor INT NOT NULL,
+    id_estadoPedido INT NOT NULL,
+    fecha_creacionPedido DATETIME NOT NULL,
+    fecha_entregaPedido DATETIME  NOT NULL,
+
+    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY(id_cliente) REFERENCES Usuario(id_usuario),
+    CONSTRAINT FK_Vendedor_Pedido FOREIGN KEY(id_vendedor) REFERENCES Usuario(id_usuario),
+    CONSTRAINT FK_EstadoPedido_Pedido FOREIGN KEY(id_estadoPedido) REFERENCES EstadoPedido(id_estadoPedido)
+)
