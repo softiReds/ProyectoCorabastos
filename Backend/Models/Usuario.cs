@@ -18,4 +18,5 @@ public class Usuario
     public virtual Ciudad Ciudad { get; set; }
     [JsonIgnore]
     public virtual TipoUsuario TipoUsuario { get; set; }
+    public virtual Inventario Inventario { get; set; }
 }
