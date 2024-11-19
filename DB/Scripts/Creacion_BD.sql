@@ -1,5 +1,4 @@
 CREATE DATABASE Corabastos;
-
 USE Corabastos;
 
 CREATE TABLE TipoUsuario(
