@@ -8,4 +8,5 @@ public class Producto
     public int ProductoPrecio { get; set; }
     
     public virtual ICollection<InventarioProducto> InventarioProductos { get; set; }
+    public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
 }
