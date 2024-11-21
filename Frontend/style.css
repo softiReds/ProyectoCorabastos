@@ -30,7 +30,7 @@ body {
   --bs-body-line-height: 2;
   --bs-body-color: #747474;
 
-  --bs-primary: #046307;
+  --bs-primary: #6BB252;
   --bs-primary-rgb: 107, 178, 82;
   
   --bs-secondary: #364127;
@@ -39,7 +39,7 @@ body {
   --bs-danger: #F95F09;
   --bs-danger-rgb: 249, 95, 9;
 
-  --bs-success: #046307;
+  --bs-success: #a3be4c;
   --bs-success-rgb: 163, 190, 76;
   
   --bs-primary-bg-subtle: #FFF9EB;
