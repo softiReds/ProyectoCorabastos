@@ -3,7 +3,7 @@ USE Corabastos;
 
 CREATE TABLE TipoUsuario(
 	id_tipoUsuario VARCHAR(80) PRIMARY KEY,
-	descripcion_tipoUsuario VARCHAR(60) NOT NULL
+	descripcion_tipoUsuario VARCHAR(20) NOT NULL
 )
 
 CREATE TABLE Ciudad(
@@ -25,6 +25,7 @@ CREATE TABLE Usuario(
 	documento_usuario VARCHAR(13) NOT NULL,
 	nombre_usuario VARCHAR(50) NOT NULL,
 	apellido_usuario VARCHAR(50) NOT NULL,
+    correo_usuario VARCHAR(80) NOT NULL,
 	telefono_usuario VARCHAR(10) NOT NULL,
 	direccion_usuario VARCHAR(100) NOT NULL,
 
