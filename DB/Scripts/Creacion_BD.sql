@@ -66,7 +66,7 @@ CREATE TABLE CarritoCompras_Producto(
 
 CREATE TABLE EstadoPedido(
     id_estadoPedido VARCHAR(80) PRIMARY KEY,
-    descripcion_estadoPedido VARCHAR(50) NOT NULL
+    descripcion_estadoPedido VARCHAR(30) NOT NULL
 )
 
 CREATE TABLE Pedido(
