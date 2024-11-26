@@ -13,7 +13,7 @@ CREATE TABLE Ciudad(
 
 CREATE TABLE Producto(
 	id_producto VARCHAR(80) PRIMARY KEY,
-	nombre_producto VARCHAR(50) NOT NULL,
+	nombre_producto VARCHAR(100) NOT NULL,
 	cantidad_producto INT NOT NULL,
 	precio_producto INT NOT NULL
 )
