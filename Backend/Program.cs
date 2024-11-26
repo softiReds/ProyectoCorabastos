@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
+//builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
+builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
 
 var app = builder.Build();
 
