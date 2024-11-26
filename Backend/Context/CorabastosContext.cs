@@ -15,6 +15,7 @@ public class CorabastosContext : DbContext
     public DbSet<Producto> Productos { get; set; }
     public DbSet<CarritoComprasProducto> CarritoComprasProductos { get; set; }
     public DbSet<InventarioProducto> InventarioProductos { get; set; }
+    
     public CorabastosContext(DbContextOptions<CorabastosContext> options) : base(options)
     {
     }
@@ -66,10 +67,12 @@ public class CorabastosContext : DbContext
             pedido.HasKey(p => p.PedidoId);
             pedido.HasOne(p => p.Cliente)
                 .WithMany(u => u.PedidosCliente)
-                .HasForeignKey(p => p.ClienteId);
+                .HasForeignKey(p => p.ClienteId)
+                .OnDelete(DeleteBehavior.Restrict);;
             pedido.HasOne(p => p.Vendedor)
                 .WithMany(u => u.PedidosVendedor)
-                .HasForeignKey(p => p.VendedorId);
+                .HasForeignKey(p => p.VendedorId)
+                .OnDelete(DeleteBehavior.Restrict);;
             pedido.HasOne(p => p.EstadoPedido)
                 .WithMany(ep => ep.Pedidos)
                 .HasForeignKey(p => p.EstadoPedidoId);
