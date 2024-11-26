@@ -9,7 +9,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
-builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
+//builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
+builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("mateoConnection"));
 
 var app = builder.Build();
 
