@@ -47,6 +47,13 @@ body {
   
   --bs-border-color: #F7F7F7;
 }
+
+.btn-orange {
+  background-color: #F95F09; /* Naranja */
+  color: white;
+  border: none;
+}
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: var(--bs-primary);
