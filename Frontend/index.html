@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- HEAD -->
   <head>
     <title>Corabastos</title>
     <meta charset="utf-8">
@@ -22,7 +23,7 @@
 
   </head>
   <body>
-
+    <!-- Importacion e iconos para el menu -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <defs>
         <symbol xmlns="http://www.w3.org/2000/svg" id="facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.05.28-1.73 1.76-1.73Z"/></symbol>
@@ -76,7 +77,7 @@
       <div class="preloader">
       </div>
     </div>
-
+    <!-- Carrito de compras -->
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart">
       <div class="offcanvas-header justify-content-center">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -127,6 +128,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
 
+      <!-- Menu -->
       <div class="offcanvas-body">
     
         <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
@@ -193,6 +195,7 @@
       </div>
     </div>
 
+    <!-- HEADER  -->
     <header>
       <div class="container-fluid">
         <div class="row py-3 border-bottom s">
@@ -209,9 +212,8 @@
             </button>
           </div>
           
-          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-4">
+          <div class="col-sm-4 offset-sm-2 offset-md-0 col-lg-6">
             <div class="search-bar row bg-light p-2 rounded-4">
-
               <div class="col-11">
                 <form id="search-form" class="text-center" action="index.html" method="post">
                   <input type="text" class="form-control border-0 bg-transparent" placeholder="Buscar">
@@ -222,56 +224,33 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4">
-            <ul class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
-              <li class="nav-item active">
-                <a href="index.html" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle pe-3" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu border-0 p-3 rounded-0 shadow" aria-labelledby="pages">
-                  <li><a href="index.html" class="dropdown-item">About Us </a></li>
-                  <li><a href="index.html" class="dropdown-item">Shop </a></li>
-                  <li><a href="index.html" class="dropdown-item">Single Product </a></li>
-                  <li><a href="index.html" class="dropdown-item">Cart </a></li>
-                  <li><a href="index.html" class="dropdown-item">Checkout </a></li>
-                  <li><a href="index.html" class="dropdown-item">Blog </a></li>
-                  <li><a href="index.html" class="dropdown-item">Single Post </a></li>
-                  <li><a href="index.html" class="dropdown-item">Styles </a></li>
-                  <li><a href="index.html" class="dropdown-item">Contact </a></li>
-                  <li><a href="index.html" class="dropdown-item">Thank You </a></li>
-                  <li><a href="index.html" class="dropdown-item">My Account </a></li>
-                  <li><a href="index.html" class="dropdown-item">404 Error </a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          
-          <div class="col-sm-8 col-lg-2 d-flex gap-5 align-items-center justify-content-center justify-content-sm-end">
-            <ul class="d-flex justify-content-end list-unstyled m-0">
+    
+          <div class="col-sm-8 col-lg-4 d-flex align-items-center justify-content-end">
+            <ul class="d-flex gap-3 list-unstyled m-0">
               <li>
-                <a href="#" class="p-2 mx-1">
+                <a href="#" class="p-2">
                   <svg width="24" height="24"><use xlink:href="#user"></use></svg>
                 </a>
               </li>
               <li>
-                <a href="#" class="p-2 mx-1">
+                <a href="#" class="p-2">
                   <svg width="24" height="24"><use xlink:href="#wishlist"></use></svg>
                 </a>
               </li>
               <li>
-                <a href="#" class="p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                <a href="#" class="p-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                   <svg width="24" height="24"><use xlink:href="#shopping-bag"></use></svg>
                 </a>
               </li>
             </ul>
           </div>
+          
 
         </div>
       </div>
     </header>
     
+    <!-- Pantalla Principal -->
     <section style="background-image: url('images/fondo.jpeg');background-repeat: no-repeat;background-size: cover;">
       <div class="container-lg">
         <div class="row">
@@ -356,6 +335,7 @@
       </div>
     </section>
 
+    <!-- Seccion Categorias -->
     <section class="py-5 overflow-hidden">
       <div class="container-lg">
         <div class="row">
@@ -381,54 +361,33 @@
             <div class="category-carousel swiper">
               <div class="swiper-wrapper">
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-1.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/frutasCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Frutas</h4>
                 </a>
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-2.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/vegetalesCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Vegetales</h4>
                 </a>
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-3.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/lacteosCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Lácteos</h4>
                 </a>
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-4.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/huevosCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Huevos</h4>
                 </a>
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-5.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/polloCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Pollo</h4>
                 </a>
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-6.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/carneCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Carne</h4>
                 </a>
                 <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-7.jpg" class="rounded-circle" alt="Category Thumbnail">
+                  <img src="images/pescadoCategoria.jpg" class="rounded-circle" alt="Category Thumbnail">
                   <h4 class="fs-6 mt-3 fw-normal category-title">Pescado</h4>
-                </a>
-                <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-8.jpg" class="rounded-circle" alt="Category Thumbnail">
-                  <h4 class="fs-6 mt-3 fw-normal category-title">Breads & Sweets</h4>
-                </a>
-                <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-1.jpg" class="rounded-circle" alt="Category Thumbnail">
-                  <h4 class="fs-6 mt-3 fw-normal category-title">Fruits & Veges</h4>
-                </a>
-                <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-1.jpg" class="rounded-circle" alt="Category Thumbnail">
-                  <h4 class="fs-6 mt-3 fw-normal category-title">Beverages</h4>
-                </a>
-                <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-1.jpg" class="rounded-circle" alt="Category Thumbnail">
-                  <h4 class="fs-6 mt-3 fw-normal category-title">Meat Products</h4>
-                </a>
-                <a href="category.html" class="nav-link swiper-slide text-center">
-                  <img src="images/category-thumb-1.jpg" class="rounded-circle" alt="Category Thumbnail">
-                  <h4 class="fs-6 mt-3 fw-normal category-title">Breads</h4>
-                </a>
-                
+                </a>      
               </div>
             </div>
 
@@ -437,6 +396,8 @@
       </div>
     </section>
 
+    
+    <!-- Seccion Productos -->
     <section class="pb-5">
       <div class="container-lg">
 
@@ -820,6 +781,7 @@
       </div>
     </section>
 
+    <!-- Seccion ofertas  -->
     <section class="py-3">
       <div class="container-lg">
         <div class="row">
@@ -865,6 +827,7 @@
       </div>
     </section>
 
+    <!-- Seccion Productos Destacados -->
     <section id="featured-products" class="products-carousel">
       <div class="container-lg overflow-hidden py-5">
         <div class="row">
