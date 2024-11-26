@@ -11,8 +11,14 @@ public class CorabastosContext : DbContext
     public DbSet<Pedido> Pedidos { get; set; }
     public DbSet<EstadoPedido> EstadoPedidos { get; set; }
     public DbSet<Inventario> Inventarios { get; set; }
-    public CorabastosContext(DbContextOptions<CorabastosContext> options) : base(options) { }
-    
+    public DbSet<CarritoCompras> CarritosCompras { get; set; }
+    public DbSet<Producto> Productos { get; set; }
+    public DbSet<CarritoComprasProducto> CarritoComprasProductos { get; set; }
+    public DbSet<InventarioProducto> InventarioProductos { get; set; }
+    public CorabastosContext(DbContextOptions<CorabastosContext> options) : base(options)
+    {
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Ciudad>(ciudad =>
@@ -21,14 +27,14 @@ public class CorabastosContext : DbContext
             ciudad.HasKey(c => c.CiudadId);
             ciudad.Property(c => c.CiudadNombre).IsRequired().HasMaxLength(50);
         });
-        
+
         modelBuilder.Entity<TipoUsuario>(tipoUsuario =>
         {
             tipoUsuario.ToTable("TipoUsuario");
             tipoUsuario.HasKey(tu => tu.TipoUsuarioId);
             tipoUsuario.Property(tu => tu.TipoUsuarioDescripcion).IsRequired().HasMaxLength(20);
         });
-        
+
         modelBuilder.Entity<Usuario>(usuario =>
         {
             usuario.ToTable("Usuario");
@@ -53,7 +59,7 @@ public class CorabastosContext : DbContext
             EstadoPedido.HasKey(ep => ep.EstadoPedidoId);
             EstadoPedido.Property(ep => ep.EstadoPedidoDescripcion).IsRequired().HasMaxLength(30);
         });
-        
+
         modelBuilder.Entity<Pedido>(pedido =>
         {
             pedido.ToTable("Pedido");
@@ -61,14 +67,14 @@ public class CorabastosContext : DbContext
             pedido.HasOne(p => p.Cliente)
                 .WithMany(u => u.PedidosCliente)
                 .HasForeignKey(p => p.ClienteId);
-            pedido.HasOne(p=>p.Vendedor)
+            pedido.HasOne(p => p.Vendedor)
                 .WithMany(u => u.PedidosVendedor)
-                .HasForeignKey(p=>p.VendedorId);
-            pedido.HasOne(p=>p.EstadoPedido)
-                .WithMany(ep=>ep.Pedidos)
-                .HasForeignKey(p=>p.EstadoPedidoId);
+                .HasForeignKey(p => p.VendedorId);
+            pedido.HasOne(p => p.EstadoPedido)
+                .WithMany(ep => ep.Pedidos)
+                .HasForeignKey(p => p.EstadoPedidoId);
             pedido.Property(p => p.PedidoFechaCreacion).IsRequired();
-            pedido.Property(p=>p.PedidoFechaEntrega).IsRequired();
+            pedido.Property(p => p.PedidoFechaEntrega).IsRequired();
         });
 
         modelBuilder.Entity<Inventario>(inventario =>
@@ -77,7 +83,52 @@ public class CorabastosContext : DbContext
             inventario.HasKey(i => i.InventarioId);
             inventario.HasOne(i => i.Vendedor)
                 .WithOne(u => u.Inventario)
-                .HasForeignKey<Inventario>(i=>i.VendedorId);
+                .HasForeignKey<Inventario>(i => i.VendedorId);
+        });
+
+        modelBuilder.Entity<CarritoCompras>(carritoCompras =>
+        {
+            carritoCompras.ToTable("CarritoCompras");
+            carritoCompras.HasKey(cc => cc.CarritoComprasId);
+            carritoCompras.HasOne(cc => cc.Cliente)
+                .WithOne(u => u.CarritoComprasCliente)
+                .HasForeignKey<CarritoCompras>(cc => cc.ClienteId);
+            carritoCompras.Property(cc => cc.CarritoComprasTotal).IsRequired();
+        });
+
+        modelBuilder.Entity<Producto>(producto =>
+        {
+            producto.ToTable("Producto");
+            producto.HasKey(pr => pr.ProductoId);
+            producto.Property(pr => pr.ProductoNombre).IsRequired().HasMaxLength(100);
+            producto.Property(pr => pr.ProductoCantidad).IsRequired();
+            producto.Property(pr => pr.ProductoPrecio).IsRequired();
+        });
+
+        modelBuilder.Entity<CarritoComprasProducto>(carritoComprasProductos =>
+        {
+            carritoComprasProductos.ToTable("CarritoCompras_Producto");
+            carritoComprasProductos.HasKey(ccp => new { ccp.CarritoComprasId, ccp.ProductoId });
+            carritoComprasProductos.HasOne(ccp => ccp.Producto)
+                .WithMany(pr => pr.CarritoComprasProductos)
+                .HasForeignKey(ccp => ccp.ProductoId);
+            carritoComprasProductos.HasOne(ccp => ccp.CarritoCompras)
+                .WithMany(cc => cc.CarritoComprasProductos)
+                .HasForeignKey(ccp => ccp.CarritoComprasId);
+            carritoComprasProductos.Property(ccp => ccp.Cantidad).IsRequired();
+        });
+
+        modelBuilder.Entity<InventarioProducto>(inventarioProducto =>
+        {
+            inventarioProducto.ToTable("Inventario_Producto");
+            inventarioProducto.HasKey(ip => new { ip.InventarioId, ip.ProductoId });
+            inventarioProducto.HasOne(ip => ip.Producto)
+                .WithMany(pr => pr.InventarioProductos)
+                .HasForeignKey(ip => ip.ProductoId);
+            inventarioProducto.HasOne(ip => ip.Inventario)
+                .WithMany(i => i.InventarioProductos)
+                .HasForeignKey(ip => ip.InventarioId);
+            inventarioProducto.Property(ip => ip.Cantidad).IsRequired();
         });
     }
 }
