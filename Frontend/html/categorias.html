@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Agrocolombiana</title>
+    <style>
+        /* Estilo General */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e9f5e9;
+        }
+
+        header {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* Navegación de Categorías */
+        .categories-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: #85bb65;
+            color: white;
+        }
+
+        .categories-nav button {
+            background: white;
+            color: #4caf50;
+            border: 1px solid #4caf50;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .categories-nav button.active {
+            background: #4caf50;
+            color: white;
+        }
+
+        .categories-nav button:hover {
+            background: #72a557;
+            color: white;
+        }
+
+        /* Estilos de los Productos */
+        .product-list {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-list.active {
+            display: grid;
+        }
+
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .product-card p {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .product-card button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background: #3d9140;
+        }
+
+        /* Carrito de Compras */
+        .cart-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .cart-modal.active {
+            display: block;
+        }
+
+        .cart-modal h2 {
+            margin-top: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .cart-item button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+
+        .cart-item button:hover {
+            background: #ff3d3d;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .cart-close {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            background: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .cart-close:hover {
+            background: #3d9140;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tienda Agrocolombiana</h1>
+    </header>
+
+    <!-- Navegación de Categorías -->
+    <div class="categories-nav">
+        <button onclick="showCategory('frutas')" class="active">Frutas</button>
+        <button onclick="showCategory('carnes')">Carnes</button>
+        <button onclick="showCategory('huevos')">Huevos</button>
+        <button onclick="showCategory('lacteos')">Lácteos</button>
+        <button onclick="showCategory('vegetales')">Vegetales</button>
+    </div>
+
+    <!-- Lista de Productos -->
+    <div id="frutas" class="product-list active">
+        <!-- Aquí se agregarán los 30 productos de frutas -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Manzana">
+            <h3>Manzana</h3>
+            <p>$3,000</p>
+            <button onclick="addToCart('Manzana', 3000)">Agregar</button>
+        </div>
+        <!-- Más productos aquí... -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Pera">
+            <h3>Pera</h3>
+            <p>$3,000</p>
+            <button onclick="addToCart('Pera', 4000)">Agregar</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Sandia">
+            <h3>Sandia</h3>
+            <p>$3,000</p>
+            <button onclick="addToCart('Sandia', 3000)">Agregar</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Tomate">
+            <h3>tomate</h3>
+            <p>$3,000</p>
+            <button onclick="addToCart('Tomate', 3000)">Agregar</button>
+        </div>
+    </div>
+
+    <div id="carnes" class="product-list">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Carne de Res">
+            <h3>Carne de Res</h3>
+            <p>$15,000</p>
+            <button onclick="addToCart('Carne de Res', 15000)">Agregar</button>
+        </div>
+        <!-- Más productos aquí... -->
+    </div>
+
+    <div id="huevos" class="product-list">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Huevos">
+            <h3>Huevos</h3>
+            <p>$2,000</p>
+            <button onclick="addToCart('Huevos', 2000)">Agregar</button>
+        </div>
+        <!-- Más productos aquí... -->
+    </div>
+
+    <div id="lacteos" class="product-list">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Leche">
+            <h3>Leche</h3>
+            <p>$5,000</p>
+            <button onclick="addToCart('Leche', 5000)">Agregar</button>
+        </div>
+        <!-- Más productos aquí... -->
+    </div>
+
+    <div id="vegetales" class="product-list">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Tomate">
+            <h3>Tomate</h3>
+            <p>$1,500</p>
+            <button onclick="addToCart('Tomate', 1500)">Agregar</button>
+        </div>
+        <!-- Más productos aquí... -->
+    </div>
+
+    <!-- Carrito de Compras -->
+    <div class="cart-icon" onclick="toggleCart()">🛒</div>
+
+    <div class="cart-modal" id="cartModal">
+        <h2>Carrito de Compras</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            Total: $<span id="cartTotal">0</span>
+        </div>
+        <button class="cart-close" onclick="closeCart()">Cerrar</button>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function showCategory(category) {
+            // Ocultar todas las categorías
+            document.querySelectorAll('.product-list').forEach(cat => cat.classList.remove('active'));
+            // Mostrar la categoría seleccionada
+            document.getElementById(category).classList.add('active');
+            // Actualizar el estado de los botones de navegación
+            document.querySelectorAll('.categories-nav button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`.categories-nav button[onclick="showCategory('${category}')"]`).classList.add('active');
+        }
+
+        function addToCart(productName, price) {
+            cart.push({ productName, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+            let total = 0;
+            cartItemsContainer.innerHTML = ''; // Limpiar los items actuales en el carrito
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <span>${item.productName}</span>
+                    <span>$${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            cartTotalElement.textContent = total;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1); // Eliminar el item seleccionado
+            updateCart(); // Actualizar el carrito
+        }
+
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
