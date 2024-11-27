@@ -1,4 +1,7 @@
 using CorabastosAPI.Context;
+using CorabastosAPI.Models;
+using CorabastosAPI.Repositories;
+using CorabastosAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,10 +11,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//  builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
-//  builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
-//  builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("mateoConnection"));
-builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("andresConnection"));
+builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
+// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
+// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("mateoConnection"));
+// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("andresConnection"));
+
+//  Services
+builder.Services.AddScoped<ICiudadService, CiudadService>();
+builder.Services.AddScoped<ICarritoComprasService, CarritoComprasService>();
+builder.Services.AddScoped<IEstadoPedidoService, EstadoPedidoService>();
+builder.Services.AddScoped<IPedidoService, PedidoService>();
+builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+//  Repositories
+builder.Services.AddScoped<IRepository<Ciudad>, CiudadRepository>();
+builder.Services.AddScoped<IRepository<CarritoCompras>, CarritoComprasRepository>();
+builder.Services.AddScoped<IRepository<EstadoPedido>, EstadoPedidoRepository>();
+builder.Services.AddScoped<IRepository<Pedido>, PedidoRepository>();
+builder.Services.AddScoped<IRepository<TipoUsuario>, TipoUsuarioRepository>();
+builder.Services.AddScoped<IRepository<Usuario>, UsuarioRepository>();
 
 var app = builder.Build();
 
