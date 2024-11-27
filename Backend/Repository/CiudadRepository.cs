@@ -17,12 +17,12 @@ public class CiudadRepository : IRepository<Ciudad>
 
     public async Task<Ciudad> GetById(Guid id) => await _dbContext.Ciudades.FindAsync(id);
 
-    public async Task Create(Ciudad entity)=> await _dbContext.Ciudades.AddAsync(entity);
+    public async Task Create(Ciudad entidad)=> await _dbContext.Ciudades.AddAsync(entidad);
 
-    public void Update(Ciudad entity)
+    public void Update(Ciudad entidad)
     {
-        _dbContext.Ciudades.Attach(entity);
-        _dbContext.Ciudades.Entry(entity).State = EntityState.Modified;
+        _dbContext.Ciudades.Attach(entidad);
+        _dbContext.Ciudades.Entry(entidad).State = EntityState.Modified;
     }
 
     public async void Delete(Guid id)

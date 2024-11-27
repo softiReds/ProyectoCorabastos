@@ -17,12 +17,12 @@ namespace CorabastosAPI.Repositories
 
         public async Task<TipoUsuario> GetById(Guid id) => await _dbContext.TiposUsuario.FindAsync(id);
 
-        public async Task Create(TipoUsuario entity) => await _dbContext.TiposUsuario.AddAsync(entity);
+        public async Task Create(TipoUsuario entidad) => await _dbContext.TiposUsuario.AddAsync(entidad);
 
-        public void Update(TipoUsuario entity)
+        public void Update(TipoUsuario entidad)
         {
-            _dbContext.TiposUsuario.Attach(entity);
-            _dbContext.TiposUsuario.Entry(entity).State = EntityState.Modified;
+            _dbContext.TiposUsuario.Attach(entidad);
+            _dbContext.TiposUsuario.Entry(entidad).State = EntityState.Modified;
         }
 
         public async void Delete(Guid id)

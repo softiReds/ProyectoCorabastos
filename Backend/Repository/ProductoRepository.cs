@@ -17,12 +17,12 @@ public class ProductoRepository : IRepository<Producto>
 
     public async Task<Producto> GetById(Guid id) => await _dbContext.Productos.FindAsync(id);
 
-    public async Task Create(Producto entity) => await _dbContext.Productos.AddAsync(entity);
+    public async Task Create(Producto entidad) => await _dbContext.Productos.AddAsync(entidad);
 
-    public void Update(Producto entity)
+    public void Update(Producto entidad)
     {
-        _dbContext.Productos.Attach(entity);
-        _dbContext.Productos.Entry(entity).State = EntityState.Modified;
+        _dbContext.Productos.Attach(entidad);
+        _dbContext.Productos.Entry(entidad).State = EntityState.Modified;
     }
 
     public async void Delete(Guid id)

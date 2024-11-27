@@ -17,12 +17,12 @@ public class CarritoComprasRepository : IRepository<CarritoCompras>
 
     public async Task<CarritoCompras> GetById(Guid id) => await _dbContext.CarritosCompras.FindAsync(id);
 
-    public async Task Create(CarritoCompras entity) => await _dbContext.CarritosCompras.AddAsync(entity);
+    public async Task Create(CarritoCompras entidad) => await _dbContext.CarritosCompras.AddAsync(entidad);
 
-    public void Update(CarritoCompras entity)
+    public void Update(CarritoCompras entidad)
     {
-        _dbContext.CarritosCompras.Attach(entity);
-        _dbContext.CarritosCompras.Entry(entity).State = EntityState.Modified;
+        _dbContext.CarritosCompras.Attach(entidad);
+        _dbContext.CarritosCompras.Entry(entidad).State = EntityState.Modified;
     }
 
     public async void Delete(Guid id)
