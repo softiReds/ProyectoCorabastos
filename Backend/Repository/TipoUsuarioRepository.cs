@@ -17,8 +17,7 @@ namespace CorabastosAPI.Repositories
 
         public async Task<TipoUsuario> GetById(Guid id) => await _dbContext.TiposUsuario.FindAsync(id);
 
-        public Task<TipoUsuario> GetById(Guid id1, Guid id2)
-            => throw new NotSupportedException("Use el método GetById(Guid id).");
+        public Task<TipoUsuario> GetById(Guid id1, Guid id2) => throw new NotSupportedException("Use el método GetById(Guid id).");
 
         public async Task Create(TipoUsuario entidad) => await _dbContext.TiposUsuario.AddAsync(entidad);
 
@@ -34,8 +33,7 @@ namespace CorabastosAPI.Repositories
             _dbContext.TiposUsuario.Remove(tipoUsuario);
         }
 
-        public void Delete(Guid id1, Guid id2)
-            => throw new NotSupportedException("Use el método Delete(Guid id).");
+        public void Delete(Guid id1, Guid id2) => throw new NotSupportedException("Use el método Delete(Guid id).");
 
         public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
     }

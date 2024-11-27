@@ -17,8 +17,7 @@ public class CarritoComprasRepository : IRepository<CarritoCompras>
 
     public async Task<CarritoCompras> GetById(Guid id) => await _dbContext.CarritosCompras.FindAsync(id);
 
-    public Task<CarritoCompras> GetById(Guid id1, Guid id2)
-        => throw new NotSupportedException("Use el método GetById(Guid id).");
+    public Task<CarritoCompras> GetById(Guid id1, Guid id2) => throw new NotSupportedException("Use el método GetById(Guid id).");
 
 
     public async Task Create(CarritoCompras entidad) => await _dbContext.CarritosCompras.AddAsync(entidad);
@@ -35,8 +34,7 @@ public class CarritoComprasRepository : IRepository<CarritoCompras>
         _dbContext.CarritosCompras.Remove(carritoCompras);
     }
 
-    public void Delete(Guid id1, Guid id2)
-        => throw new NotSupportedException("Use el método Delete(Guid id).");
+    public void Delete(Guid id1, Guid id2) => throw new NotSupportedException("Use el método Delete(Guid id).");
 
     public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
 }
