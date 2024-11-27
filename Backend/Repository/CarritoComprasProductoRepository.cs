@@ -14,32 +14,28 @@ public class CarritoComprasProductoRepository : IRepository<CarritoComprasProduc
     }
 
     public async Task<List<CarritoComprasProducto>> Get() => await _dbContext.CarritoComprasProductos.ToListAsync();
+
     public Task<CarritoComprasProducto> GetById(Guid id)
+        => throw new NotSupportedException("Use el método GetById(Guid carritoComprasId, Guid productoId).");
+
+    public async Task<CarritoComprasProducto> GetById(Guid carritoComprasId, Guid productoId) =>
+        await _dbContext.CarritoComprasProductos.FindAsync(new object[] { carritoComprasId, productoId });
+
+    public async Task Create(CarritoComprasProducto entidad) => await _dbContext.CarritoComprasProductos.AddAsync(entidad);
+
+    public void Update(CarritoComprasProducto entidad)
     {
-        throw new NotImplementedException();
+        _dbContext.CarritoComprasProductos.Attach(entidad);
+        _dbContext.CarritoComprasProductos.Entry(entidad).State = EntityState.Modified;
     }
 
-    public async Task<CarritoComprasProducto> GetById(Guid carritoComprasId, Guid productoId) 
-        => await _dbContext.CarritoComprasProductos.FindAsync(carritoComprasId, productoId);
+    public void Delete(Guid id) => throw new NotSupportedException("Use el método Delete(Guid carritoComprasId, Guid productoId).");
 
-    public async Task Create(CarritoComprasProducto entity) => await _dbContext.CarritoComprasProductos.AddAsync(entity);
-
-    public void Update(CarritoComprasProducto entity)
+    public async void Delete(Guid carritoComprasId, Guid productoId)
     {
-        _dbContext.CarritoComprasProductos.Attach(entity);
-        _dbContext.CarritoComprasProductos.Entry(entity).State = EntityState.Modified;
+        var carritoComprasProducto = await GetById(carritoComprasId, productoId);
+        _dbContext.CarritoComprasProductos.Remove(carritoComprasProducto);
     }
 
-    public void Delete(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    // public async void Delete(Guid carritoComprasId, Guid productoId)
-    // {
-    //     var carritoComprasProducto = await GetById(carritoComprasId, productoId);
-    //     _dbContext.CarritoComprasProductos.Remove(carritoComprasProducto);
-    // }
-    
     public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
 }
