@@ -47,6 +47,13 @@ body {
   
   --bs-border-color: #F7F7F7;
 }
+
+.btn-orange {
+  background-color: #F95F09; /* Naranja */
+  color: white;
+  border: none;
+}
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: var(--bs-primary);
@@ -517,7 +524,7 @@ input[type=number]::-webkit-outer-spin-button {
   text-wrap: nowrap;
   height: 3.3em;
   line-height: 2em;
-  width: 100%;
+  width: auto;
 }
 .fs-7 {
   font-size: 0.8rem!important;
