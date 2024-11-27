@@ -17,7 +17,10 @@ public class CiudadRepository : IRepository<Ciudad>
 
     public async Task<Ciudad> GetById(Guid id) => await _dbContext.Ciudades.FindAsync(id);
 
-    public async Task Create(Ciudad entidad)=> await _dbContext.Ciudades.AddAsync(entidad);
+    public Task<Ciudad> GetById(Guid id1, Guid id2)
+        => throw new NotSupportedException("Use el método GetById(Guid id).");
+
+    public async Task Create(Ciudad entidad) => await _dbContext.Ciudades.AddAsync(entidad);
 
     public void Update(Ciudad entidad)
     {
@@ -30,6 +33,9 @@ public class CiudadRepository : IRepository<Ciudad>
         var ciudad = await GetById(id);
         _dbContext.Ciudades.Remove(ciudad);
     }
+
+    public void Delete(Guid id1, Guid id2)
+        => throw new NotSupportedException("Use el método Delete(Guid id).");
 
     public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
 }

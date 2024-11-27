@@ -17,6 +17,9 @@ public class ProductoRepository : IRepository<Producto>
 
     public async Task<Producto> GetById(Guid id) => await _dbContext.Productos.FindAsync(id);
 
+    public Task<Producto> GetById(Guid id1, Guid id2)
+        => throw new NotSupportedException("Use el método GetById(Guid id).");
+
     public async Task Create(Producto entidad) => await _dbContext.Productos.AddAsync(entidad);
 
     public void Update(Producto entidad)
@@ -30,6 +33,9 @@ public class ProductoRepository : IRepository<Producto>
         var producto = await GetById(id);
         _dbContext.Productos.Remove(producto);
     }
+
+    public void Delete(Guid id1, Guid id2)
+        => throw new NotSupportedException("Use el método Delete(Guid id).");
 
     public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
 }
