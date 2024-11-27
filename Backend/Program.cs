@@ -24,6 +24,8 @@ builder.Services.AddScoped<IEstadoPedidoService, EstadoPedidoService>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IInventarioService, InventarioService>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
 
 //  Repositories
 builder.Services.AddScoped<IRepository<Ciudad>, CiudadRepository>();
@@ -32,6 +34,8 @@ builder.Services.AddScoped<IRepository<EstadoPedido>, EstadoPedidoRepository>();
 builder.Services.AddScoped<IRepository<Pedido>, PedidoRepository>();
 builder.Services.AddScoped<IRepository<TipoUsuario>, TipoUsuarioRepository>();
 builder.Services.AddScoped<IRepository<Usuario>, UsuarioRepository>();
+builder.Services.AddScoped<IRepository<Inventario>, InventarioRepository>();
+builder.Services.AddScoped<IRepository<Producto>, ProductoRepository>();
 
 var app = builder.Build();
 
