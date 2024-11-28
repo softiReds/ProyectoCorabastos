@@ -134,7 +134,7 @@
 </head>
 <body>
     <header>
-        <h1>Inventario de Productos - Proveedor: <span id="supplierName">DatoDb</span></h1>
+        <h1>Inventario de Productos - Proveedor[Dato de BD]: <span id="supplierName">DatoDb</span></h1>
     </header>
 
     <div class="inventory-container">
@@ -155,9 +155,9 @@
         <table class="inventory-table">
             <thead>
                 <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
+                    <th>Producto[Dato de BD]</th>
+                    <th>Precio[Dato de BD]</th>
+                    <th>Stock[Dato de BD]</th>
                     <th>Progreso</th>
                     <th>Acciones</th>
                 </tr>
@@ -171,11 +171,11 @@
     <script>
         // Datos simulados de la base de datos
         let inventory = [
-            { name: "Manzana", price: 3000, stock: 50, initialStock: 50 },
-            { name: "Carne de Res", price: 15000, stock: 20, initialStock: 20 },
-            { name: "Huevos", price: 2000, stock: 100, initialStock: 100 },
-            { name: "Leche", price: 5000, stock: 40, initialStock: 40 },
-            { name: "Tomate", price: 1500, stock: 70, initialStock: 70 }
+            { name: "Manzana[Dato de BD]", price: 3000, stock: 50, initialStock: 50 },
+            { name: "Carne de Res[Dato de BD]", price: 15000, stock: 20, initialStock: 20 },
+            { name: "Huevos[Dato de BD]", price: 2000, stock: 100, initialStock: 100 },
+            { name: "Leche[Dato de BD]", price: 5000, stock: 40, initialStock: 40 },
+            { name: "Tomate[Dato de BD]", price: 1500, stock: 70, initialStock: 70 }
         ];
 
         // Función para renderizar la tabla
