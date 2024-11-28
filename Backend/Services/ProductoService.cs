@@ -16,21 +16,25 @@ public class ProductoService : IProductoService
 
     public Task<Producto> GetById(Guid id) => _productoRepository.GetById(id);
 
-    public void Post(Producto producto)
+    public async Task<Producto> Post(Producto producto)
     {
-        _productoRepository.Create(producto);
-        _productoRepository.SaveChanges();
+        await _productoRepository.Create(producto);
+        await _productoRepository.SaveChanges();
+        return producto;
     }
 
-    public void Put(Producto producto)
+    public async Task<Producto> Put(Producto producto)
     {
         _productoRepository.Update(producto);
-        _productoRepository.SaveChanges();
+        await _productoRepository.SaveChanges();
+        return producto;
     }
 
-    public void Delete(Guid id)
+    public async Task<Producto> Delete(Guid id)
     {
+        var producto = await _productoRepository.GetById(id);
         _productoRepository.Delete(id);
-        _productoRepository.SaveChanges();
+        await _productoRepository.SaveChanges();
+        return producto;
     }
 }

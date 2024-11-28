@@ -6,7 +6,7 @@ public interface ICarritoComprasService
 {
     Task<List<CarritoCompras>> Get();
     Task<CarritoCompras> GetById(Guid id);
-    void Post(CarritoCompras carritoCompras);
-    void Put(CarritoCompras carritoCompras);
-    void Delete(Guid id);
+    Task<CarritoCompras> Post(CarritoCompras carritoCompras);
+    Task<CarritoCompras> Put(CarritoCompras carritoCompras);
+    Task<CarritoCompras> Delete(Guid id);
 }

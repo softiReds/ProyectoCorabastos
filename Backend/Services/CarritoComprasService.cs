@@ -16,21 +16,25 @@ public class CarritoComprasService : ICarritoComprasService
 
     public Task<CarritoCompras> GetById(Guid id) => _carritoComprasRepository.GetById(id);
 
-    public void Post(CarritoCompras carritoCompras)
+    public async Task<CarritoCompras> Post(CarritoCompras carritoCompras)
     {
-        _carritoComprasRepository.Create(carritoCompras);
-        _carritoComprasRepository.SaveChanges();
+        await _carritoComprasRepository.Create(carritoCompras);
+        await _carritoComprasRepository.SaveChanges();
+        return carritoCompras;
     }
 
-    public void Put(CarritoCompras carritoCompras)
+    public async Task<CarritoCompras> Put(CarritoCompras carritoCompras)
     {
         _carritoComprasRepository.Update(carritoCompras);
-        _carritoComprasRepository.SaveChanges();
+        await _carritoComprasRepository.SaveChanges();
+        return carritoCompras;
     }
 
-    public void Delete(Guid id)
+    public async Task<CarritoCompras> Delete(Guid id)
     {
+        var carritoCompras = await _carritoComprasRepository.GetById(id);
         _carritoComprasRepository.Delete(id);
-        _carritoComprasRepository.SaveChanges();
+        await _carritoComprasRepository.SaveChanges();
+        return carritoCompras;
     }
 }

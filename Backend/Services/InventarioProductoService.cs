@@ -17,21 +17,25 @@ public class InventarioProductoService : IInventarioProductoService
     public Task<InventarioProducto> GetById(Guid inventarioId, Guid productoId)
         => _inventarioProductoRepository.GetById(inventarioId, productoId);
 
-    public void Post(InventarioProducto inventarioProducto)
+    public async Task<InventarioProducto> Post(InventarioProducto inventarioProducto)
     {
-        _inventarioProductoRepository.Create(inventarioProducto);
-        _inventarioProductoRepository.SaveChanges();
+        await _inventarioProductoRepository.Create(inventarioProducto);
+        await _inventarioProductoRepository.SaveChanges();
+        return inventarioProducto;
     }
 
-    public void Put(InventarioProducto inventarioProducto)
+    public async Task<InventarioProducto> Put(InventarioProducto inventarioProducto)
     {
         _inventarioProductoRepository.Update(inventarioProducto);
-        _inventarioProductoRepository.SaveChanges();
+        await _inventarioProductoRepository.SaveChanges();
+        return inventarioProducto;
     }
 
-    public void Delete(Guid inventarioId, Guid productoId)
+    public async Task<InventarioProducto> Delete(Guid inventarioId, Guid productoId)
     {
+        var inventarioProducto = await _inventarioProductoRepository.GetById(inventarioId, productoId);
         _inventarioProductoRepository.Delete(inventarioId, productoId);
-        _inventarioProductoRepository.SaveChanges();
+        await _inventarioProductoRepository.SaveChanges();
+        return inventarioProducto;
     }
 }
