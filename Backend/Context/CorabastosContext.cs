@@ -68,11 +68,11 @@ public class CorabastosContext : DbContext
             pedido.HasOne(p => p.Cliente)
                 .WithMany(u => u.PedidosCliente)
                 .HasForeignKey(p => p.ClienteId)
-                .OnDelete(DeleteBehavior.Restrict);;
+                .OnDelete(DeleteBehavior.Restrict);
             pedido.HasOne(p => p.Vendedor)
                 .WithMany(u => u.PedidosVendedor)
                 .HasForeignKey(p => p.VendedorId)
-                .OnDelete(DeleteBehavior.Restrict);;
+                .OnDelete(DeleteBehavior.Restrict);
             pedido.HasOne(p => p.EstadoPedido)
                 .WithMany(ep => ep.Pedidos)
                 .HasForeignKey(p => p.EstadoPedidoId);
