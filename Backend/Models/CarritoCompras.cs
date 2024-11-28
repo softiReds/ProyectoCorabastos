@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace CorabastosAPI.Models;
 
@@ -9,5 +10,5 @@ public class CarritoCompras
     public int CarritoComprasTotal { get; set; }
 
     public virtual Usuario Cliente { get; set; }
-    [JsonIgnore] public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
+    [JsonIgnore] [ValidateNever] public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
 }

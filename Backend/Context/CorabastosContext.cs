@@ -19,6 +19,11 @@ public class CorabastosContext : DbContext
     public CorabastosContext(DbContextOptions<CorabastosContext> options) : base(options)
     {
     }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
