@@ -26,6 +26,8 @@ builder.Services.AddDbContext<CorabastosContext>(e =>
 //  Services
 builder.Services.AddScoped<ICiudadService, CiudadService>();
 builder.Services.AddScoped<ICarritoComprasService, CarritoComprasService>();
+builder.Services.AddScoped<ICarritoComprasProductoService, CarritoComprasProductoService>();
+builder.Services.AddScoped<IInventarioProductoService, InventarioProductoService>();
 builder.Services.AddScoped<IEstadoPedidoService, EstadoPedidoService>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
@@ -36,6 +38,8 @@ builder.Services.AddScoped<IProductoService, ProductoService>();
 //  Repositories
 builder.Services.AddScoped<IRepository<Ciudad>, CiudadRepository>();
 builder.Services.AddScoped<IRepository<CarritoCompras>, CarritoComprasRepository>();
+builder.Services.AddScoped<IRepository<CarritoComprasProducto>, CarritoComprasProductoRepository>();
+builder.Services.AddScoped<IRepository<InventarioProducto>, InventarioProductoRepository>();
 builder.Services.AddScoped<IRepository<EstadoPedido>, EstadoPedidoRepository>();
 builder.Services.AddScoped<IRepository<Pedido>, PedidoRepository>();
 builder.Services.AddScoped<IRepository<TipoUsuario>, TipoUsuarioRepository>();

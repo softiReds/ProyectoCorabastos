@@ -1,4 +1,5 @@
 ﻿using CorabastosAPI.Models;
+using CorabastosAPI.Models.Containers;
 using CorabastosAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,9 +35,9 @@ public class CarritoComprasController : ControllerBase
     }
     
     [HttpPut("{agregarProducto}")]
-    public async Task<IActionResult> Put([FromBody] CarritoCompras carritoCompras, [FromBody] CarritoComprasProducto carritoComprasProducto, [FromRoute] bool agregarProducto)
+    public async Task<IActionResult> Put([FromBody] CarritoComprasRequest carritoComprasRequestrequest, [FromRoute] bool agregarProducto)
     {
-        await _carritoComprasService.Put(carritoCompras, carritoComprasProducto, agregarProducto);
+        await _carritoComprasService.Put(carritoComprasRequestrequest.CarritoCompras, carritoComprasRequestrequest.CarritoComprasProducto, agregarProducto);
         return Ok();
     }
     

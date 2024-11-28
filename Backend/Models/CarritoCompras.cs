@@ -9,6 +9,9 @@ public class CarritoCompras
     public Guid ClienteId { get; set; }
     public int CarritoComprasTotal { get; set; }
 
-    public virtual Usuario Cliente { get; set; }
-    [JsonIgnore] [ValidateNever] public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
+    [ValidateNever] public virtual Usuario Cliente { get; set; }
+
+    [JsonIgnore]
+    [ValidateNever]
+    public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
 }
