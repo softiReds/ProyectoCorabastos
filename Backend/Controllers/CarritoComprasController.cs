@@ -27,23 +27,23 @@ public class CarritoComprasController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult Post([FromBody] CarritoCompras carritoCompras)
+    public async Task<IActionResult> Post([FromBody] CarritoCompras carritoCompras)
     {
-        _carritoComprasService.Post(carritoCompras);
+        await _carritoComprasService.Post(carritoCompras);
         return Ok();
     }
     
     [HttpPut]
-    public IActionResult Put([FromBody] CarritoCompras carritoCompras)
+    public async Task<IActionResult> Put([FromBody] CarritoCompras carritoCompras)
     {
-        _carritoComprasService.Put(carritoCompras);
+        await _carritoComprasService.Put(carritoCompras);
         return Ok();
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _carritoComprasService.Delete(id);
+        await _carritoComprasService.Delete(id);
         return Ok();
     }
 }

@@ -27,23 +27,23 @@ public class UsuarioController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult Post([FromBody] Usuario usuario)
+    public async Task<IActionResult> Post([FromBody] Usuario usuario)
     {
-        _usuarioService.Post(usuario);
+        await _usuarioService.Post(usuario);
         return Ok();
     }
     
     [HttpPut]
-    public IActionResult Put([FromBody] Usuario usuario)
+    public async Task<IActionResult> Put([FromBody] Usuario usuario)
     {
-        _usuarioService.Put(usuario);
+        await _usuarioService.Put(usuario);
         return Ok();
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _usuarioService.Delete(id);
+        await _usuarioService.Delete(id);
         return Ok();
     }
 }

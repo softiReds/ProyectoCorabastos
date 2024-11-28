@@ -27,23 +27,23 @@ public class TipoUsuarioController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] TipoUsuario tipoUsuario)
+    public async Task<IActionResult> Post([FromBody] TipoUsuario tipoUsuario)
     {
-        _tipoUsuarioService.Post(tipoUsuario);
+        await _tipoUsuarioService.Post(tipoUsuario);
         return Ok();
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] TipoUsuario tipoUsuario)
+    public async Task<IActionResult> Put([FromBody] TipoUsuario tipoUsuario)
     {
-        _tipoUsuarioService.Put(tipoUsuario);
+        await _tipoUsuarioService.Put(tipoUsuario);
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _tipoUsuarioService.Delete(id);
+        await _tipoUsuarioService.Delete(id);
         return Ok();
     }
 }

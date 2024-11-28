@@ -27,16 +27,16 @@ public class EstadoPedidoController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] EstadoPedido estadoPedido)
+    public async Task<IActionResult> Post([FromBody] EstadoPedido estadoPedido)
     {
-        _estadoPedidoService.Post(estadoPedido);
+        await _estadoPedidoService.Post(estadoPedido);
         return Ok();
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] EstadoPedido estadoPedido)
+    public async Task<IActionResult> Put([FromBody] EstadoPedido estadoPedido)
     {
-        _estadoPedidoService.Put(estadoPedido);
+        await _estadoPedidoService.Put(estadoPedido);
         return Ok();
     }
 

@@ -27,23 +27,23 @@ public class InventarioController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult Post([FromBody] Inventario inventario)
+    public async Task<IActionResult> Post([FromBody] Inventario inventario)
     {
         _inventarioService.Post(inventario);
         return Ok();
     }
     
     [HttpPut]
-    public IActionResult Put([FromBody] Inventario inventario)
+    public async Task<IActionResult> Put([FromBody] Inventario inventario)
     {
-        _inventarioService.Put(inventario);
+        await _inventarioService.Put(inventario);
         return Ok();
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _inventarioService.Delete(id);
+        await _inventarioService.Delete(id);
         return Ok();
     }
 }

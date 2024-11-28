@@ -3,6 +3,7 @@ using CorabastosAPI.Models;
 using CorabastosAPI.Repositories;
 using CorabastosAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("azureConnection"));
+builder.Services.AddDbContext<CorabastosContext>(e => 
+    e.UseSqlServer(builder.Configuration.GetConnectionString("azureConnection")));
 
 //  Services
 builder.Services.AddScoped<ICiudadService, CiudadService>();
@@ -48,7 +50,7 @@ app.UseHttpsRedirection();
 app.MapGet("/bdConexion", async ([FromServices] CorabastosContext context) =>
 {
     context.Database.EnsureCreated();
-    
+
     return Results.Ok("Conexión exitosa");
 });
 
