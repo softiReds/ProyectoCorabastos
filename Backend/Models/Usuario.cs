@@ -13,14 +13,11 @@ public class Usuario
     public string UsuarioCorreo { get; set; }
     public string UsuarioTelefono { get; set; }
     public string UsuarioDireccion { get; set; }
-    
-    [JsonIgnore]
+
     public virtual Ciudad Ciudad { get; set; }
-    [JsonIgnore]
     public virtual TipoUsuario TipoUsuario { get; set; }
-    [JsonIgnore]
-    public virtual Inventario Inventario { get; set; }
-    public virtual ICollection<Pedido> PedidosCliente { get; set; }
-    public virtual ICollection<Pedido> PedidosVendedor { get; set; }
-    public virtual CarritoCompras CarritoComprasCliente { get; set; }
+    [JsonIgnore] public virtual Inventario? Inventario { get; set; }
+    [JsonIgnore] public virtual ICollection<Pedido>? PedidosCliente { get; set; }
+    [JsonIgnore] public virtual ICollection<Pedido>? PedidosVendedor { get; set; }
+    [JsonIgnore] public virtual CarritoCompras? CarritoComprasCliente { get; set; }
 }

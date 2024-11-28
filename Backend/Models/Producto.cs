@@ -1,4 +1,6 @@
-﻿namespace CorabastosAPI.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace CorabastosAPI.Models;
 
 public class Producto
 {
@@ -7,6 +9,6 @@ public class Producto
     public int ProductoCantidad { get; set; }
     public int ProductoPrecio { get; set; }
     
-    public virtual ICollection<InventarioProducto> InventarioProductos { get; set; }
-    public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
+    [JsonIgnore] public virtual ICollection<InventarioProducto>? InventarioProductos { get; set; }
+    [JsonIgnore] public virtual ICollection<CarritoComprasProducto>? CarritoComprasProductos { get; set; }
 }
