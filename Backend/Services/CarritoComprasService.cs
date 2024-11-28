@@ -28,12 +28,22 @@ public class CarritoComprasService : ICarritoComprasService
         return carritoCompras;
     }
 
-    public async Task<CarritoCompras> Put(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto)
+    public async Task<CarritoCompras> Put(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto, bool agregarProducto)
     {
-        carritoCompras.CarritoComprasTotal = CalcularTotalCarritoCompras(carritoCompras.CarritoComprasTotal,
-            carritoComprasProducto.ProductoId, carritoComprasProducto.Cantidad);
+        if (agregarProducto)
+        {
+            carritoCompras.CarritoComprasTotal = AgregarProductoTotalCarrito(carritoCompras.CarritoComprasTotal,
+                carritoComprasProducto.ProductoId, carritoComprasProducto.Cantidad);
+            await _carritoComprasProductoRepository.Create(carritoComprasProducto);
+        }
+        else
+        {
+            carritoCompras.CarritoComprasTotal = QuitarProductoTotalCarrito(carritoCompras.CarritoComprasTotal,
+                carritoComprasProducto.ProductoId, carritoComprasProducto.Cantidad);
+            _carritoComprasProductoRepository.Delete(carritoComprasProducto.CarritoComprasId, carritoComprasProducto.ProductoId);
+        }
+        
         _carritoComprasRepository.Update(carritoCompras);
-        await _carritoComprasProductoRepository.Create(carritoComprasProducto);
         await _carritoComprasRepository.SaveChanges();
         return carritoCompras;
     }
@@ -46,7 +56,7 @@ public class CarritoComprasService : ICarritoComprasService
         return carritoCompras;
     }
 
-    public int CalcularTotalCarritoCompras(int totalCarrito, Guid idProducto, int cantidadProducto)
+    public int AgregarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProducto)
     {
         var producto = _productoRepository.GetById(idProducto).Result;
         var precioProductos = 0;
@@ -56,6 +66,19 @@ public class CarritoComprasService : ICarritoComprasService
         }
 
         totalCarrito += precioProductos;
+        return totalCarrito;
+    }
+
+    public int QuitarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProducto)
+    {
+        var producto = _productoRepository.GetById(idProducto).Result;
+        var precioProductos = 0;
+        for (var i = 0; i < cantidadProducto; i++)
+        {
+            precioProductos += producto.ProductoPrecio;
+        }
+
+        totalCarrito -= precioProductos;
         return totalCarrito;
     }
 }
