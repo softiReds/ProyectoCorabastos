@@ -27,9 +27,9 @@ public class TipoUsuarioController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] TipoUsuario tipoUsuario)
+    public IActionResult Post([FromBody] TipoUsuario tipoUsuario)
     {
-        await _tipoUsuarioService.Post(tipoUsuario);
+        _tipoUsuarioService.Post(tipoUsuario);
         return Ok();
     }
 

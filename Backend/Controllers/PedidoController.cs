@@ -27,9 +27,9 @@ public class PedidoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Pedido pedido)
+    public IActionResult Post([FromBody] Pedido pedido)
     {
-        await _pedidoService.Post(pedido);
+        _pedidoService.Post(pedido);
         return Ok();
     }
 

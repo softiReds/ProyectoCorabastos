@@ -16,10 +16,10 @@ public class CiudadService : ICiudadService
 
     public Task<Ciudad> GetById(Guid id) => _ciudadRepository.GetById(id);
 
-    public Task Post(Ciudad ciudad)
+    public void Post(Ciudad ciudad)
     {
         _ciudadRepository.Create(ciudad);
-        return _ciudadRepository.SaveChanges();
+        _ciudadRepository.SaveChanges();
     }
 
     public void Put(Ciudad ciudad)

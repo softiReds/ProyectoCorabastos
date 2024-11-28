@@ -27,9 +27,9 @@ public class ProductoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Producto producto)
+    public IActionResult Post([FromBody] Producto producto)
     {
-        await _productoService.Post(producto);
+        _productoService.Post(producto);
         return Ok();
     }
 

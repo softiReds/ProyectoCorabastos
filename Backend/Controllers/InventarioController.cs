@@ -27,9 +27,9 @@ public class InventarioController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Inventario inventario)
+    public IActionResult Post([FromBody] Inventario inventario)
     {
-        await _inventarioService.Post(inventario);
+        _inventarioService.Post(inventario);
         return Ok();
     }
     

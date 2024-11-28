@@ -16,10 +16,10 @@ public class PedidoService : IPedidoService
 
     public Task<Pedido> GetById(Guid id) => _pedidoRepository.GetById(id);
 
-    public Task Post(Pedido pedido)
+    public void Post(Pedido pedido)
     {
         _pedidoRepository.Create(pedido);
-        return _pedidoRepository.SaveChanges();
+        _pedidoRepository.SaveChanges();
     }
 
     public void Put(Pedido pedido)

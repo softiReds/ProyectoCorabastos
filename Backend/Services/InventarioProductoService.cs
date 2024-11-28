@@ -17,10 +17,10 @@ public class InventarioProductoService : IInventarioProductoService
     public Task<InventarioProducto> GetById(Guid inventarioId, Guid productoId)
         => _inventarioProductoRepository.GetById(inventarioId, productoId);
 
-    public Task Post(InventarioProducto inventarioProducto)
+    public void Post(InventarioProducto inventarioProducto)
     {
         _inventarioProductoRepository.Create(inventarioProducto);
-        return _inventarioProductoRepository.SaveChanges();
+        _inventarioProductoRepository.SaveChanges();
     }
 
     public void Put(InventarioProducto inventarioProducto)

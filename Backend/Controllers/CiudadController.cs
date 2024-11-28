@@ -27,9 +27,9 @@ public class CiudadController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Ciudad ciudad)
+    public IActionResult Post([FromBody] Ciudad ciudad)
     {
-        await _ciudadService.Post(ciudad);
+        _ciudadService.Post(ciudad);
         return Ok();
     }
     

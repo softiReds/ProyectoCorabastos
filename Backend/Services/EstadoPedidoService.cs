@@ -16,10 +16,10 @@ public class EstadoPedidoService : IEstadoPedidoService
 
     public Task<EstadoPedido> GetById(Guid id) => _estadoPedidoRepository.GetById(id);
 
-    public Task Post(EstadoPedido estadoPedido)
+    public void Post(EstadoPedido estadoPedido)
     {
         _estadoPedidoRepository.Create(estadoPedido);
-        return _estadoPedidoRepository.SaveChanges();
+        _estadoPedidoRepository.SaveChanges();
     }
 
     public void Put(EstadoPedido estadoPedido)

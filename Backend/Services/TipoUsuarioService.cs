@@ -16,10 +16,10 @@ namespace CorabastosAPI.Services
 
         public Task<TipoUsuario> GetById(Guid id) => _tipoUsuarioRepository.GetById(id);
 
-        public Task Post(TipoUsuario tipoUsuario)
+        public void Post(TipoUsuario tipoUsuario)
         { 
             _tipoUsuarioRepository.Create(tipoUsuario);
-            return _tipoUsuarioRepository.SaveChanges();
+            _tipoUsuarioRepository.SaveChanges();
         }
 
         public void Put(TipoUsuario tipoUsuario)

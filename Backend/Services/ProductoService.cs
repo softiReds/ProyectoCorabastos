@@ -16,10 +16,10 @@ public class ProductoService : IProductoService
 
     public Task<Producto> GetById(Guid id) => _productoRepository.GetById(id);
 
-    public Task Post(Producto producto)
+    public void Post(Producto producto)
     {
         _productoRepository.Create(producto);
-        return _productoRepository.SaveChanges();
+        _productoRepository.SaveChanges();
     }
 
     public void Put(Producto producto)

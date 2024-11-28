@@ -27,9 +27,9 @@ public class CarritoComprasController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CarritoCompras carritoCompras)
+    public IActionResult Post([FromBody] CarritoCompras carritoCompras)
     {
-        await _carritoComprasService.Post(carritoCompras);
+        _carritoComprasService.Post(carritoCompras);
         return Ok();
     }
     

@@ -17,10 +17,10 @@ public class CarritoComprasProductoService : ICarritoComprasProductoService
     public Task<CarritoComprasProducto> GetById(Guid carritoComprasId, Guid productoId)
         => _carritoComprasProductoRepository.GetById(carritoComprasId, productoId);
 
-    public Task Post(CarritoComprasProducto carritoComprasProducto)
+    public void Post(CarritoComprasProducto carritoComprasProducto)
     {
         _carritoComprasProductoRepository.Create(carritoComprasProducto);
-        return _carritoComprasProductoRepository.SaveChanges();
+        _carritoComprasProductoRepository.SaveChanges();
     }
 
     public void Put(CarritoComprasProducto carritoComprasProducto)
