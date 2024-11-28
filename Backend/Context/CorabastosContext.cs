@@ -104,7 +104,6 @@ public class CorabastosContext : DbContext
             producto.ToTable("Producto");
             producto.HasKey(pr => pr.ProductoId);
             producto.Property(pr => pr.ProductoNombre).IsRequired().HasMaxLength(100);
-            producto.Property(pr => pr.ProductoCantidad).IsRequired();
             producto.Property(pr => pr.ProductoPrecio).IsRequired();
         });
 
