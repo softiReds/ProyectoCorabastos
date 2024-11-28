@@ -16,9 +16,21 @@ public class InventarioService : IInventarioService
 
     public Task<Inventario> GetById(Guid id) => _inventarioRepository.GetById(id);
 
-    public Task Post(Inventario inventario) => _inventarioRepository.Create(inventario);
+    public Task Post(Inventario inventario)
+    {
+        _inventarioRepository.Create(inventario);
+        return _inventarioRepository.SaveChanges();
+    }
 
-    public void Put(Inventario inventario) => _inventarioRepository.Update(inventario);
+    public void Put(Inventario inventario)
+    {
+        _inventarioRepository.Update(inventario);
+        _inventarioRepository.SaveChanges();
+    }
 
-    public void Delete(Guid id) => _inventarioRepository.Delete(id);
+    public void Delete(Guid id)
+    {
+        _inventarioRepository.Delete(id);
+        _inventarioRepository.SaveChanges();
+    }
 }

@@ -16,10 +16,22 @@ namespace CorabastosAPI.Services
 
         public Task<Usuario> GetById(Guid id) => _usuarioRepository.GetById(id);
 
-        public Task Post(Usuario usuario) => _usuarioRepository.Create(usuario);
+        public Task Post(Usuario usuario)
+        {
+            _usuarioRepository.Create(usuario);
+            return _usuarioRepository.SaveChanges();
+        }
 
-        public void Put(Usuario usuario) => _usuarioRepository.Update(usuario);
+        public void Put(Usuario usuario)
+        {
+            _usuarioRepository.Update(usuario);
+            _usuarioRepository.SaveChanges();
+        }
 
-        public void Delete(Guid id) => _usuarioRepository.Delete(id);
+        public void Delete(Guid id)
+        {
+            _usuarioRepository.Delete(id);
+            _usuarioRepository.SaveChanges();
+        }
     }
 }

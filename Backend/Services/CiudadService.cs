@@ -16,9 +16,21 @@ public class CiudadService : ICiudadService
 
     public Task<Ciudad> GetById(Guid id) => _ciudadRepository.GetById(id);
 
-    public Task Post(Ciudad ciudad) => _ciudadRepository.Create(ciudad);
+    public Task Post(Ciudad ciudad)
+    {
+        _ciudadRepository.Create(ciudad);
+        return _ciudadRepository.SaveChanges();
+    }
 
-    public void Put(Ciudad ciudad) => _ciudadRepository.Update(ciudad);
+    public void Put(Ciudad ciudad)
+    {
+        _ciudadRepository.Update(ciudad);
+        _ciudadRepository.SaveChanges();
+    }
 
-    public void Delete(Guid id) => _ciudadRepository.Delete(id);
+    public void Delete(Guid id)
+    {
+        _ciudadRepository.Delete(id);
+        _ciudadRepository.SaveChanges();
+    }
 }

@@ -16,9 +16,21 @@ public class EstadoPedidoService : IEstadoPedidoService
 
     public Task<EstadoPedido> GetById(Guid id) => _estadoPedidoRepository.GetById(id);
 
-    public Task Post(EstadoPedido estadoPedido) => _estadoPedidoRepository.Create(estadoPedido);
+    public Task Post(EstadoPedido estadoPedido)
+    {
+        _estadoPedidoRepository.Create(estadoPedido);
+        return _estadoPedidoRepository.SaveChanges();
+    }
 
-    public void Put(EstadoPedido estadoPedido) => _estadoPedidoRepository.Update(estadoPedido);
+    public void Put(EstadoPedido estadoPedido)
+    {
+        _estadoPedidoRepository.Update(estadoPedido);
+        _estadoPedidoRepository.SaveChanges();
+    }
 
-    public void Delete(Guid id) => _estadoPedidoRepository.Delete(id);
+    public void Delete(Guid id)
+    {
+        _estadoPedidoRepository.Delete(id);
+        _estadoPedidoRepository.SaveChanges();
+    }
 }

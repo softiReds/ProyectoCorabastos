@@ -16,9 +16,21 @@ public class ProductoService : IProductoService
 
     public Task<Producto> GetById(Guid id) => _productoRepository.GetById(id);
 
-    public Task Post(Producto producto) => _productoRepository.Create(producto);
+    public Task Post(Producto producto)
+    {
+        _productoRepository.Create(producto);
+        return _productoRepository.SaveChanges();
+    }
 
-    public void Put(Producto producto) => _productoRepository.Update(producto);
+    public void Put(Producto producto)
+    {
+        _productoRepository.Update(producto);
+        _productoRepository.SaveChanges();
+    }
 
-    public void Delete(Guid id) => _productoRepository.Delete(id);
+    public void Delete(Guid id)
+    {
+        _productoRepository.Delete(id);
+        _productoRepository.SaveChanges();
+    }
 }

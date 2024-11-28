@@ -22,8 +22,16 @@ namespace CorabastosAPI.Services
             return _tipoUsuarioRepository.SaveChanges();
         }
 
-        public void Put(TipoUsuario tipoUsuario) => _tipoUsuarioRepository.Update(tipoUsuario);
+        public void Put(TipoUsuario tipoUsuario)
+        {
+            _tipoUsuarioRepository.Update(tipoUsuario);
+            _tipoUsuarioRepository.SaveChanges();
+        }
 
-        public void Delete(Guid id) => _tipoUsuarioRepository.Delete(id);
+        public void Delete(Guid id)
+        {
+            _tipoUsuarioRepository.Delete(id);
+            _tipoUsuarioRepository.SaveChanges();
+        }
     }
 }

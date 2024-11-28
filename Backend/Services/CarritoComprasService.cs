@@ -16,9 +16,21 @@ public class CarritoComprasService : ICarritoComprasService
 
     public Task<CarritoCompras> GetById(Guid id) => _carritoComprasRepository.GetById(id);
 
-    public Task Post(CarritoCompras carritoCompras) => _carritoComprasRepository.Create(carritoCompras);
+    public Task Post(CarritoCompras carritoCompras)
+    {
+        _carritoComprasRepository.Create(carritoCompras);
+        return _carritoComprasRepository.SaveChanges();
+    }
 
-    public void Put(CarritoCompras carritoCompras) => _carritoComprasRepository.Update(carritoCompras);
+    public void Put(CarritoCompras carritoCompras)
+    {
+        _carritoComprasRepository.Update(carritoCompras);
+        _carritoComprasRepository.SaveChanges();
+    }
 
-    public void Delete(Guid id) => _carritoComprasRepository.Delete(id);
+    public void Delete(Guid id)
+    {
+        _carritoComprasRepository.Delete(id);
+        _carritoComprasRepository.SaveChanges();
+    }
 }
