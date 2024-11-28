@@ -12,10 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
-// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
-// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("mateoConnection"));
-// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("andresConnection"));
+builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("azureConnection"));
 
 //  Services
 builder.Services.AddScoped<ICiudadService, CiudadService>();
