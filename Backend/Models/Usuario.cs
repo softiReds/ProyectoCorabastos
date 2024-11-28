@@ -16,8 +16,8 @@ public class Usuario
 
     public virtual Ciudad Ciudad { get; set; }
     public virtual TipoUsuario TipoUsuario { get; set; }
-    [JsonIgnore] public virtual Inventario? Inventario { get; set; }
-    [JsonIgnore] public virtual ICollection<Pedido>? PedidosCliente { get; set; }
-    [JsonIgnore] public virtual ICollection<Pedido>? PedidosVendedor { get; set; }
-    [JsonIgnore] public virtual CarritoCompras? CarritoComprasCliente { get; set; }
+    [JsonIgnore] public virtual Inventario Inventario { get; set; }
+    [JsonIgnore] public virtual ICollection<Pedido> PedidosCliente { get; set; }
+    [JsonIgnore] public virtual ICollection<Pedido> PedidosVendedor { get; set; }
+    [JsonIgnore] public virtual CarritoCompras CarritoComprasCliente { get; set; }
 }

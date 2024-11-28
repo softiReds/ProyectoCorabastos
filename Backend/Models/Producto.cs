@@ -8,6 +8,6 @@ public class Producto
     public string ProductoNombre { get; set; }
     public int ProductoPrecio { get; set; }
     
-    [JsonIgnore] public virtual ICollection<InventarioProducto>? InventarioProductos { get; set; }
-    [JsonIgnore] public virtual ICollection<CarritoComprasProducto>? CarritoComprasProductos { get; set; }
+    [JsonIgnore] public virtual ICollection<InventarioProducto> InventarioProductos { get; set; }
+    [JsonIgnore] public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
 }

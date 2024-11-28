@@ -9,5 +9,5 @@ public class CarritoCompras
     public int CarritoComprasTotal { get; set; }
 
     public virtual Usuario Cliente { get; set; }
-    [JsonIgnore] public virtual ICollection<CarritoComprasProducto>? CarritoComprasProductos { get; set; }
+    [JsonIgnore] public virtual ICollection<CarritoComprasProducto> CarritoComprasProductos { get; set; }
 }
