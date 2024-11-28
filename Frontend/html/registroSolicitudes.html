@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ventas y Solicitudes [Dato de BD]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f9f3;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .details p {
+            margin: 5px 0;
+        }
+
+        .view-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-button:hover {
+            background-color: #3d9140;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #777;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Registro de Ventas y Solicitudes - [Dato de BD]</h1>
+    </header>
+
+    <div class="container">
+        <!-- Sección de Ventas -->
+        <div class="section">
+            <h2>Ventas Recientes</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Venta[Dato de BD]</th>
+                        <th>Producto[Dato de BD]</th>
+                        <th>Cantidad[Dato de BD]</th>
+                        <th>Total ($)</th>
+                        <th>Fecha[Dato de BD]</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTable">
+                    <!-- Datos generados dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sección de Solicitudes -->
+        <div class="section">
+            <h2>Solicitudes de Compra - [Dato de BD]</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Pedido[Dato de BD]</th>
+                        <th>Cliente[Dato de BD]</th>
+                        <th>Producto[Dato de BD]</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="requestsTable">
+                    <!-- Datos generados dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Datos simulados de ventas
+        const salesData = [
+            { id: "V001", product: "Manzanas", quantity: 10, total: 30000, date: "2024-11-25" },
+            { id: "V002", product: "Carne de Res", quantity: 5, total: 75000, date: "2024-11-24" },
+            { id: "V003", product: "Huevos", quantity: 30, total: 60000, date: "2024-11-23" },
+            { id: "V004", product: "Leche", quantity: 20, total: 100000, date: "2024-11-22" },
+            { id: "V005", product: "Tomates", quantity: 25, total: 37500, date: "2024-11-21" },
+        ];
+
+        // Datos simulados de solicitudes
+        const requestsData = [
+            { id: "S001", client: "Juan Pérez", product: "Manzanas", quantity: 15 },
+            { id: "S002", client: "María Gómez", product: "Carne de Res", quantity: 3 },
+            { id: "S003", client: "Carlos Martínez", product: "Huevos", quantity: 50 },
+            { id: "S004", client: "Luisa Ramírez", product: "Leche", quantity: 10 },
+        ];
+
+        // Renderizar tabla de ventas
+        function renderSales() {
+            const table = document.getElementById("salesTable");
+            table.innerHTML = salesData.map(sale => `
+                <tr>
+                    <td>${sale.id}</td>
+                    <td>${sale.product}</td>
+                    <td>${sale.quantity}</td>
+                    <td>${sale.total}</td>
+                    <td>${sale.date}</td>
+                </tr>
+            `).join("");
+        }
+
+        // Renderizar tabla de solicitudes
+        function renderRequests() {
+            const table = document.getElementById("requestsTable");
+            table.innerHTML = requestsData.map((request, index) => `
+                <tr>
+                    <td>${request.id}</td>
+                    <td>${request.client}</td>
+                    <td>${request.product}</td>
+                    <td>${request.quantity}</td>
+                    <td>
+                        <button class="view-button" onclick="viewRequestDetails(${index})">Ver</button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        // Mostrar detalles de solicitud
+        function viewRequestDetails(index) {
+            const request = requestsData[index];
+            alert(`
+                Detalles de la Solicitud:
+                - ID: ${request.id}
+                - Cliente: ${request.client}
+                - Producto: ${request.product}
+                - Cantidad: ${request.quantity}
+            `);
+        }
+
+        // Inicializar las tablas
+        renderSales();
+        renderRequests();
+    </script>
+</body>
+</html>
