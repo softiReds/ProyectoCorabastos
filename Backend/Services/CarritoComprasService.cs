@@ -27,8 +27,15 @@ public class CarritoComprasService : ICarritoComprasService
         await _carritoComprasRepository.SaveChanges();
         return carritoCompras;
     }
+    
+    public async Task<CarritoCompras> Put(CarritoCompras carritoCompras)
+    {
+        _carritoComprasRepository.Update(carritoCompras);
+        await _carritoComprasRepository.SaveChanges();
+        return carritoCompras;
+    }
 
-    public async Task<CarritoCompras> Put(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto, bool agregarProducto)
+    public async Task<CarritoCompras> AgregarQuitarProducto(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto, bool agregarProducto)
     {
         var carritoComprasProductoDb =
             await _carritoComprasProductoRepository.GetById(carritoCompras.CarritoComprasId, carritoComprasProducto.ProductoId);

@@ -7,7 +7,8 @@ public interface ICarritoComprasService
     Task<List<CarritoCompras>> Get();
     Task<CarritoCompras> GetById(Guid id);
     Task<CarritoCompras> Post(CarritoCompras carritoCompras);
-    Task<CarritoCompras> Put(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto, bool agregarProducto);
+    Task<CarritoCompras> AgregarQuitarProducto(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto, bool agregarProducto);
+    Task<CarritoCompras> Put(CarritoCompras carritoCompras);
     Task<CarritoCompras> Delete(Guid id);
 
     (int totalCarrito, int cantidadProducto) AgregarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProducto, int cantidadProductoDb);
