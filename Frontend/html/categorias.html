@@ -3,95 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Agrocolombiana -  Dato Db</title>
+    <title>Tienda Agrocolombiana - Dato Db</title>
     <link rel="stylesheet" href="/css/categorias.css">
 </head>
 <body>
     <header>
         <div class="d-flex align-items-center my-3 my-sm-0">
             <a href="/index.html">
-              <img src="/images/logoCorabastos.png" alt="logo" class="img-fluid" >
+              <img src="/images/logoCorabastos.png" alt="logo" class="img-fluid">
             </a>
-          </div>
+        </div>
     </header>
+
+    <!-- Selección de Carritos -->
+    <section>
+        <h2>Selecciona un carrito</h2>
+        <div id="carritoSelector" class="carrito-selector">
+            <!-- Aquí se mostrarán los carritos disponibles -->
+        </div>
+    </section>
 
     <!-- Navegación de Categorías -->
     <div class="categories-nav">
         <button onclick="showCategory('frutas')" class="active">Frutas</button>
-        <button onclick="showCategory('carnes')">CarnesDB</button>
-        <button onclick="showCategory('huevos')">HuevosDb</button>
-        <button onclick="showCategory('lacteos')">LácteosDb</button>
-        <button onclick="showCategory('vegetales')">VegetalesDb</button>
     </div>
 
     <!-- Lista de Productos -->
     <div id="frutas" class="product-list active">
-        <!-- Aquí se agregarán los 30 productos de frutas -->
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Manzana">
-            <h3>Manzana[Dato de BD]</h3>
-            <p>$3,000[Dato de BD]</p>
-            <button onclick="addToCart('Manzana', 3000)">Agregar</button>
-        </div>
-        <!-- Más productos aquí... -->
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Pera">
-            <h3>Pera[Dato de BD]</h3>
-            <p>$3,000[Dato de BD]</p>
-            <button onclick="addToCart('Pera', 4000)">Agregar</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Sandia">
-            <h3>Sandia[Dato de BD]</h3>
-            <p>$3,000[Dato de BD]</p>
-            <button onclick="addToCart('Sandia', 3000)">Agregar</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Tomate">
-            <h3>tomate[Dato de BD]</h3>
-            <p>$3,000[Dato de BD]</p>
-            <button onclick="addToCart('Tomate', 3000)">Agregar</button>
-        </div>
-    </div>
-
-    <div id="carnes" class="product-list">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Carne de Res">
-            <h3>Carne de Res[Dato de BD]</h3>
-            <p>$15,000[Dato de BD]</p>
-            <button onclick="addToCart('Carne de Res', 15000)">Agregar</button>
-        </div>
-        <!-- Más productos aquí... -->
-    </div>
-
-    <div id="huevos" class="product-list">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Huevos">
-            <h3>Huevos[Dato de BD]</h3>
-            <p>$2,000[Dato de BD]</p>
-            <button onclick="addToCart('Huevos', 2000)">Agregar</button>
-        </div>
-        <!-- Más productos aquí... -->
+        <!-- Aquí se agregarán los productos de frutas -->
     </div>
 
     <div id="lacteos" class="product-list">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Leche">
-            <h3>Leche[Dato de BD]</h3>
-            <p>$5,000[Dato de BD]</p>
-            <button onclick="addToCart('Leche', 5000)">Agregar</button>
-        </div>
-        <!-- Más productos aquí... -->
+        <!-- Aquí se agregarán los productos de lácteos -->
     </div>
 
     <div id="vegetales" class="product-list">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Tomate">
-            <h3>Tomate[Dato de BD]</h3>
-            <p>$1,500[Dato de BD]</p>
-            <button onclick="addToCart('Tomate', 1500)">Agregar</button>
-        </div>
-        <!-- Más productos aquí... -->
+        <!-- Aquí se agregarán los productos de vegetales -->
     </div>
 
     <!-- Carrito de Compras -->
@@ -107,6 +54,5 @@
     </div>
 
     <script src="/js/categorias.js"></script>
-    
 </body>
 </html>

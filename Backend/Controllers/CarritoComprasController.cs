@@ -35,9 +35,16 @@ public class CarritoComprasController : ControllerBase
     }
     
     [HttpPut("{agregarProducto}")]
-    public async Task<IActionResult> Put([FromBody] CarritoComprasRequest carritoComprasRequest, [FromRoute] bool agregarProducto)
+    public async Task<IActionResult> AgregarQuitarProducto([FromBody] CarritoComprasRequest carritoComprasRequest, [FromRoute] bool agregarProducto)
     {
-        await _carritoComprasService.Put(carritoComprasRequest.CarritoCompras, carritoComprasRequest.CarritoComprasProducto, agregarProducto);
+        await _carritoComprasService.AgregarQuitarProducto(carritoComprasRequest.CarritoCompras, carritoComprasRequest.CarritoComprasProducto, agregarProducto);
+        return Ok();
+    }
+    
+    [HttpPut]
+    public async Task<IActionResult> Put([FromBody] CarritoCompras carritoCompras)
+    {
+        await _carritoComprasService.Put(carritoCompras);
         return Ok();
     }
     
