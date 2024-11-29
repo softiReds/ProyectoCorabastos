@@ -1,5 +1,5 @@
-const API_BASE_URL_PROD = "https://corabastosapi.azurewebsites.net/api";
-const API_BASE_URL = "https://localhost:7124/api";
+const API_BASE_URL = "https://corabastosapi.azurewebsites.net/api";
+const API_BASE_URL_LOCAL = "https://localhost:7124/api";
 
 // Arreglo global para manejar los productos en el carrito
 let carrito = [];
@@ -8,6 +8,7 @@ let carritoSeleccionado = null; // Guardará el carrito actualmente seleccionado
 
 // Función para obtener carritos desde la API
 async function obtenerCarritos() {
+    console.log("Obteniendo de: " + `${API_BASE_URL}/carritocompras`);
     try {
         const response = await fetch(`${API_BASE_URL}/carritocompras`, {
             method: 'GET',
