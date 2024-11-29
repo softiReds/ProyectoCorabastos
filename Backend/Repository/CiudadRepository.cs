@@ -27,13 +27,13 @@ public class CiudadRepository : IRepository<Ciudad>
         _dbContext.Ciudades.Entry(entidad).State = EntityState.Modified;
     }
 
-    public async void Delete(Guid id)
+    public async Task Delete(Guid id)
     {
         var ciudad = await GetById(id);
         _dbContext.Ciudades.Remove(ciudad);
     }
 
-    public void Delete(Guid id1, Guid id2) => throw new NotSupportedException("Use el método Delete(Guid id).");
+    public Task Delete(Guid id1, Guid id2) => throw new NotSupportedException("Use el método Delete(Guid id).");
 
     public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
 }

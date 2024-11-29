@@ -29,9 +29,9 @@ public class CarritoComprasProductoRepository : IRepository<CarritoComprasProduc
         _dbContext.CarritoComprasProductos.Entry(entidad).State = EntityState.Modified;
     }
 
-    public void Delete(Guid id) => throw new NotSupportedException("Use el método Delete(Guid carritoComprasId, Guid productoId).");
+    public Task Delete(Guid id) => throw new NotSupportedException("Use el método Delete(Guid carritoComprasId, Guid productoId).");
 
-    public async void Delete(Guid carritoComprasId, Guid productoId)
+    public async Task Delete(Guid carritoComprasId, Guid productoId)
     {
         var carritoComprasProducto = await GetById(carritoComprasId, productoId);
         _dbContext.CarritoComprasProductos.Remove(carritoComprasProducto);
