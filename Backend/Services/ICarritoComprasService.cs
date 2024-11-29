@@ -10,6 +10,7 @@ public interface ICarritoComprasService
     Task<CarritoCompras> Put(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto, bool agregarProducto);
     Task<CarritoCompras> Delete(Guid id);
 
-    int AgregarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProducto);
-    int QuitarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProducto);
+    (int totalCarrito, int cantidadProducto) AgregarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProducto, int cantidadProductoDb);
+    (int totalCarrito, int cantidadProducto) QuitarProductoTotalCarrito(int totalCarrito, Guid idProducto, int cantidadProductoEliminado,
+        int cantidadProducto);
 }

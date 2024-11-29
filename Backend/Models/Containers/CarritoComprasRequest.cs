@@ -2,6 +2,12 @@
 
 public class CarritoComprasRequest
 {
-    public CarritoCompras CarritoCompras { get; }
-    public CarritoComprasProducto CarritoComprasProducto { get; }
+    public CarritoComprasRequest(CarritoCompras carritoCompras, CarritoComprasProducto carritoComprasProducto)
+    {
+        CarritoCompras = carritoCompras;
+        CarritoComprasProducto = carritoComprasProducto;
+    }
+
+    public CarritoCompras CarritoCompras { get; set; }
+    public CarritoComprasProducto CarritoComprasProducto { get; set; }
 }
