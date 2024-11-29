@@ -27,13 +27,13 @@ namespace CorabastosAPI.Repositories
             _dbContext.TiposUsuario.Entry(entidad).State = EntityState.Modified;
         }
 
-        public async void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             var tipoUsuario = await GetById(id);
             _dbContext.TiposUsuario.Remove(tipoUsuario);
         }
 
-        public void Delete(Guid id1, Guid id2) => throw new NotSupportedException("Use el método Delete(Guid id).");
+        public Task Delete(Guid id1, Guid id2) => throw new NotSupportedException("Use el método Delete(Guid id).");
 
         public async Task SaveChanges() => await _dbContext.SaveChangesAsync();
     }

@@ -6,7 +6,7 @@ public interface IInventarioService
 {
     Task<List<Inventario>> Get();
     Task<Inventario> GetById(Guid id);
-    Task Post(Inventario inventario);
-    void Put(Inventario inventario);
-    void Delete(Guid id);
+    Task<Inventario> Post(Inventario inventario);
+    Task<Inventario> Put(Inventario inventario);
+    Task<Inventario> Delete(Guid id);
 }

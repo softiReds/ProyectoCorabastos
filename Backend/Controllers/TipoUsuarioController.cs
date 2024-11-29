@@ -34,16 +34,16 @@ public class TipoUsuarioController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] TipoUsuario tipoUsuario)
+    public async Task<IActionResult> Put([FromBody] TipoUsuario tipoUsuario)
     {
-        _tipoUsuarioService.Put(tipoUsuario);
+        await _tipoUsuarioService.Put(tipoUsuario);
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _tipoUsuarioService.Delete(id);
+        await _tipoUsuarioService.Delete(id);
         return Ok();
     }
 }

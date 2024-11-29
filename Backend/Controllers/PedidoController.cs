@@ -34,16 +34,16 @@ public class PedidoController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] Pedido pedido)
+    public async Task<IActionResult> Put([FromBody] Pedido pedido)
     {
-        _pedidoService.Put(pedido);
+        await _pedidoService.Put(pedido);
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _pedidoService.Delete(id);
+        await _pedidoService.Delete(id);
         return Ok();
     }
 }

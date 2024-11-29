@@ -29,9 +29,9 @@ namespace CorabastosAPI.Repositories
             _dbContext.InventarioProductos.Entry(entidad).State = EntityState.Modified;
         }
 
-        public void Delete(Guid id) => throw new NotSupportedException("Use el método Delete(Guid inventarioId, Guid productoId).");
+        public Task Delete(Guid id) => throw new NotSupportedException("Use el método Delete(Guid inventarioId, Guid productoId).");
 
-        public async void Delete(Guid inventarioId, Guid productoId)
+        public async Task Delete(Guid inventarioId, Guid productoId)
         {
             var inventarioProducto = await GetById(inventarioId, productoId);
             _dbContext.InventarioProductos.Remove(inventarioProducto);

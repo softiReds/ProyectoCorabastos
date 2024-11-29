@@ -34,16 +34,16 @@ public class CiudadController : ControllerBase
     }
     
     [HttpPut]
-    public IActionResult Put([FromBody] Ciudad ciudad)
+    public async Task<IActionResult> Put([FromBody] Ciudad ciudad)
     {
-        _ciudadService.Put(ciudad);
+        await _ciudadService.Put(ciudad);
         return Ok();
     }
     
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _ciudadService.Delete(id);
+        await _ciudadService.Delete(id);
         return Ok();
     }
 }

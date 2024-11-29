@@ -34,16 +34,16 @@ public class ProductoController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] Producto producto)
+    public async Task<IActionResult> Put([FromBody] Producto producto)
     {
-        _productoService.Put(producto);
+        await _productoService.Put(producto);
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        _productoService.Delete(id);
+        await _productoService.Delete(id);
         return Ok();
     }
 }

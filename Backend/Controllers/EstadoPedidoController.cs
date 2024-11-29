@@ -34,9 +34,9 @@ public class EstadoPedidoController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] EstadoPedido estadoPedido)
+    public async Task<IActionResult> Put([FromBody] EstadoPedido estadoPedido)
     {
-        _estadoPedidoService.Put(estadoPedido);
+        await _estadoPedidoService.Put(estadoPedido);
         return Ok();
     }
 

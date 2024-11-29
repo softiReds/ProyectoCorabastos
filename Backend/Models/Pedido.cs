@@ -1,4 +1,6 @@
-﻿namespace CorabastosAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+namespace CorabastosAPI.Models;
 
 public class Pedido
 {
@@ -8,8 +10,8 @@ public class Pedido
     public Guid EstadoPedidoId { get; set; }
     public DateTime PedidoFechaCreacion { get; set; }
     public DateTime PedidoFechaEntrega { get; set; }
-    
-    public virtual EstadoPedido EstadoPedido { get; set; } 
-    public virtual Usuario Cliente { get; set; } 
-    public virtual Usuario Vendedor { get; set; } 
+
+    [ValidateNever] public virtual EstadoPedido EstadoPedido { get; set; }
+    [ValidateNever] public virtual Usuario Cliente { get; set; }
+    [ValidateNever] public virtual Usuario Vendedor { get; set; }
 }

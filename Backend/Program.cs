@@ -3,23 +3,31 @@ using CorabastosAPI.Models;
 using CorabastosAPI.Repositories;
 using CorabastosAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("santiagoWorkConnection"));
-// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("ximenaConnection"));
-// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("mateoConnection"));
-// builder.Services.AddSqlServer<CorabastosContext>(builder.Configuration.GetConnectionString("andresConnection"));
+builder.Services.AddDbContext<CorabastosContext>(e =>
+    e.UseSqlServer(builder.Configuration.GetConnectionString("azureConnection")));
 
 //  Services
 builder.Services.AddScoped<ICiudadService, CiudadService>();
 builder.Services.AddScoped<ICarritoComprasService, CarritoComprasService>();
+builder.Services.AddScoped<ICarritoComprasProductoService, CarritoComprasProductoService>();
+builder.Services.AddScoped<IInventarioProductoService, InventarioProductoService>();
 builder.Services.AddScoped<IEstadoPedidoService, EstadoPedidoService>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
@@ -30,6 +38,8 @@ builder.Services.AddScoped<IProductoService, ProductoService>();
 //  Repositories
 builder.Services.AddScoped<IRepository<Ciudad>, CiudadRepository>();
 builder.Services.AddScoped<IRepository<CarritoCompras>, CarritoComprasRepository>();
+builder.Services.AddScoped<IRepository<CarritoComprasProducto>, CarritoComprasProductoRepository>();
+builder.Services.AddScoped<IRepository<InventarioProducto>, InventarioProductoRepository>();
 builder.Services.AddScoped<IRepository<EstadoPedido>, EstadoPedidoRepository>();
 builder.Services.AddScoped<IRepository<Pedido>, PedidoRepository>();
 builder.Services.AddScoped<IRepository<TipoUsuario>, TipoUsuarioRepository>();
@@ -51,9 +61,13 @@ app.UseHttpsRedirection();
 app.MapGet("/bdConexion", async ([FromServices] CorabastosContext context) =>
 {
     context.Database.EnsureCreated();
-    
+
     return Results.Ok("Conexión exitosa");
 });
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.MapControllers();
 

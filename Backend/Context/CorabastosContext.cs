@@ -19,6 +19,11 @@ public class CorabastosContext : DbContext
     public CorabastosContext(DbContextOptions<CorabastosContext> options) : base(options)
     {
     }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -68,11 +73,11 @@ public class CorabastosContext : DbContext
             pedido.HasOne(p => p.Cliente)
                 .WithMany(u => u.PedidosCliente)
                 .HasForeignKey(p => p.ClienteId)
-                .OnDelete(DeleteBehavior.Restrict);;
+                .OnDelete(DeleteBehavior.Restrict);
             pedido.HasOne(p => p.Vendedor)
                 .WithMany(u => u.PedidosVendedor)
                 .HasForeignKey(p => p.VendedorId)
-                .OnDelete(DeleteBehavior.Restrict);;
+                .OnDelete(DeleteBehavior.Restrict);
             pedido.HasOne(p => p.EstadoPedido)
                 .WithMany(ep => ep.Pedidos)
                 .HasForeignKey(p => p.EstadoPedidoId);
@@ -104,7 +109,6 @@ public class CorabastosContext : DbContext
             producto.ToTable("Producto");
             producto.HasKey(pr => pr.ProductoId);
             producto.Property(pr => pr.ProductoNombre).IsRequired().HasMaxLength(100);
-            producto.Property(pr => pr.ProductoCantidad).IsRequired();
             producto.Property(pr => pr.ProductoPrecio).IsRequired();
         });
 

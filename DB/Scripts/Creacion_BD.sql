@@ -1,83 +1,102 @@
-CREATE DATABASE Corabastos;
-USE Corabastos;
+CREATE
+DATABASE Corabastos;
+USE
+Corabastos;
 
-CREATE TABLE TipoUsuario(
-	id_tipoUsuario VARCHAR(80) PRIMARY KEY,
-	descripcion_tipoUsuario VARCHAR(20) NOT NULL
-)
+-- Tabla Ciudades
+CREATE TABLE Ciudad
+(
+    CiudadId     UNIQUEIDENTIFIER PRIMARY KEY,
+    CiudadNombre NVARCHAR(50) NOT NULL
+);
 
-CREATE TABLE Ciudad(
-	id_ciudad VARCHAR(80) PRIMARY KEY,
-	nombre_ciudad VARCHAR(50) NOT NULL
-)
+-- Tabla TiposUsuario
+CREATE TABLE TipoUsuario
+(
+    TipoUsuarioId          UNIQUEIDENTIFIER PRIMARY KEY,
+    TipoUsuarioDescripcion NVARCHAR(20) NOT NULL
+);
 
-CREATE TABLE Producto(
-	id_producto VARCHAR(80) PRIMARY KEY,
-	nombre_producto VARCHAR(100) NOT NULL,
-	cantidad_producto INT NOT NULL,
-	precio_producto INT NOT NULL
-)
+-- Tabla Usuarios
+CREATE TABLE Usuario
+(
+    UsuarioId        UNIQUEIDENTIFIER PRIMARY KEY,
+    CiudadId         UNIQUEIDENTIFIER NOT NULL,
+    TipoUsuarioId    UNIQUEIDENTIFIER NOT NULL,
+    UsuarioDocumento NVARCHAR(13) NOT NULL,
+    UsuarioNombre    NVARCHAR(50) NOT NULL,
+    UsuarioApellido  NVARCHAR(50) NOT NULL,
+    UsuarioCorreo    NVARCHAR(80) NOT NULL,
+    UsuarioTelefono  NVARCHAR(10) NOT NULL,
+    UsuarioDireccion NVARCHAR(100) NOT NULL,
+    CONSTRAINT FK_Ciudad_Usuario FOREIGN KEY (CiudadId) REFERENCES Ciudad (CiudadId),
+    CONSTRAINT FK_TipoUsuario_Usuario FOREIGN KEY (TipoUsuarioId) REFERENCES TipoUsuario (TipoUsuarioId)
+);
 
-CREATE TABLE Usuario(
-	id_usuario VARCHAR(80) PRIMARY KEY,
-	id_ciudad VARCHAR(80) NOT NULL,
-	id_tipoUsuario VARCHAR(80) NOT NULL,
-	documento_usuario VARCHAR(13) NOT NULL,
-	nombre_usuario VARCHAR(50) NOT NULL,
-	apellido_usuario VARCHAR(50) NOT NULL,
-    correo_usuario VARCHAR(80) NOT NULL,
-	telefono_usuario VARCHAR(10) NOT NULL,
-	direccion_usuario VARCHAR(100) NOT NULL,
+-- Tabla EstadoPedidos
+CREATE TABLE EstadoPedido
+(
+    EstadoPedidoId          UNIQUEIDENTIFIER PRIMARY KEY,
+    EstadoPedidoDescripcion NVARCHAR(30) NOT NULL
+);
 
-	CONSTRAINT FK_Ciudad_Usuario FOREIGN KEY(id_ciudad) REFERENCES Ciudad(id_ciudad),
-	CONSTRAINT FK_TipoUsuario_Usuario FOREIGN KEY(id_tipoUsuario) REFERENCES TipoUsuario(id_tipoUsuario)
-)
+-- Tabla Pedidos
+CREATE TABLE Pedido
+(
+    PedidoId            UNIQUEIDENTIFIER PRIMARY KEY,
+    ClienteId           UNIQUEIDENTIFIER NOT NULL,
+    VendedorId          UNIQUEIDENTIFIER NOT NULL,
+    EstadoPedidoId      UNIQUEIDENTIFIER NOT NULL,
+    PedidoFechaCreacion DATETIME         NOT NULL,
+    PedidoFechaEntrega  DATETIME         NOT NULL,
+    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (ClienteId) REFERENCES Usuario (UsuarioId),
+    CONSTRAINT FK_Vendedor_Pedido FOREIGN KEY (VendedorId) REFERENCES Usuario (UsuarioId),
+    CONSTRAINT FK_EstadoPedido_Pedido FOREIGN KEY (EstadoPedidoId) REFERENCES EstadoPedido (EstadoPedidoId)
+);
 
-CREATE TABLE Inventario(
-	id_inventario VARCHAR(80) PRIMARY KEY,
-	id_vendedor VARCHAR(80) NOT NULL,
-	
-	CONSTRAINT FK_Usuario_Inventario FOREIGN KEY(id_vendedor) REFERENCES Usuario(id_usuario)
-)
+-- Tabla Inventarios
+CREATE TABLE Inventario
+(
+    InventarioId UNIQUEIDENTIFIER PRIMARY KEY,
+    VendedorId   UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT FK_Vendedor_Inventario FOREIGN KEY (VendedorId) REFERENCES Usuario (UsuarioId)
+);
 
-CREATE TABLE CarritoCompras(
-	id_carritoCompras VARCHAR(80) PRIMARY KEY,
-	id_cliente VARCHAR(80) NOT NULL,
-	total_carritoCompras INT NOT NULL,
-	
-	CONSTRAINT FK_Usuario_CarritoCompras FOREIGN KEY(id_cliente) REFERENCES Usuario(id_usuario)
-)
+-- Tabla CarritosCompras
+CREATE TABLE CarritoCompras
+(
+    CarritoComprasId    UNIQUEIDENTIFIER PRIMARY KEY,
+    ClienteId           UNIQUEIDENTIFIER NOT NULL,
+    CarritoComprasTotal INT              NOT NULL,
+    CONSTRAINT FK_Cliente_CarritoCompras FOREIGN KEY (ClienteId) REFERENCES Usuario (UsuarioId)
+);
 
-CREATE TABLE Inventario_Producto(
-	id_inventario VARCHAR(80) NOT NULL,
-	id_producto VARCHAR(80) NOT NULL,
-	cantidad INT NOT NULL,
-	
-	CONSTRAINT PK_Inventario_Producto PRIMARY KEY(id_inventario, id_producto)
-)
+-- Tabla Productos
+CREATE TABLE Producto
+(
+    ProductoId     UNIQUEIDENTIFIER PRIMARY KEY,
+    ProductoNombre NVARCHAR(100) NOT NULL,
+    ProductoPrecio INT NOT NULL
+);
 
-CREATE TABLE CarritoCompras_Producto(
-	id_carritoCompras VARCHAR(80) NOT NULL,
-	id_producto VARCHAR(80) NOT NULL,
-	cantidad INT NOT NULL,
-	
-	CONSTRAINT PK_CarritoCompras_Producto PRIMARY KEY(id_carritoCompras, id_producto)
-)
+-- Tabla InventarioProductos
+CREATE TABLE Inventario_Producto
+(
+    InventarioId UNIQUEIDENTIFIER NOT NULL,
+    ProductoId   UNIQUEIDENTIFIER NOT NULL,
+    Cantidad     INT              NOT NULL,
+    CONSTRAINT PK_InventarioProducto PRIMARY KEY (InventarioId, ProductoId),
+    CONSTRAINT FK_Producto_InventarioProducto FOREIGN KEY (ProductoId) REFERENCES Producto (ProductoId),
+    CONSTRAINT FK_Inventario_InventarioProducto FOREIGN KEY (InventarioId) REFERENCES Inventario (InventarioId)
+);
 
-CREATE TABLE EstadoPedido(
-    id_estadoPedido VARCHAR(80) PRIMARY KEY,
-    descripcion_estadoPedido VARCHAR(30) NOT NULL
-)
-
-CREATE TABLE Pedido(
-    id_pedido VARCHAR(80) PRIMARY KEY,
-    id_cliente VARCHAR(80) NOT NULL,   
-    id_vendedor VARCHAR(80) NOT NULL,
-    id_estadoPedido VARCHAR(80) NOT NULL,
-    fecha_creacionPedido DATETIME NOT NULL,
-    fecha_entregaPedido DATETIME  NOT NULL,
-
-    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY(id_cliente) REFERENCES Usuario(id_usuario),
-    CONSTRAINT FK_Vendedor_Pedido FOREIGN KEY(id_vendedor) REFERENCES Usuario(id_usuario),
-    CONSTRAINT FK_EstadoPedido_Pedido FOREIGN KEY(id_estadoPedido) REFERENCES EstadoPedido(id_estadoPedido)
-)
+-- Tabla CarritoComprasProductos
+CREATE TABLE CarritoCompras_Producto
+(
+    CarritoComprasId UNIQUEIDENTIFIER NOT NULL,
+    ProductoId       UNIQUEIDENTIFIER NOT NULL,
+    Cantidad         INT              NOT NULL,
+    CONSTRAINT PK_CarritoComprasProducto PRIMARY KEY (CarritoComprasId, ProductoId),
+    CONSTRAINT FK_Producto_CarritoComprasProducto FOREIGN KEY (ProductoId) REFERENCES Producto (ProductoId),
+    CONSTRAINT FK_CarritoCompras_CarritoComprasProducto FOREIGN KEY (CarritoComprasId) REFERENCES CarritoCompras (CarritoComprasId)
+);

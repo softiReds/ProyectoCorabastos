@@ -16,9 +16,25 @@ public class PedidoService : IPedidoService
 
     public Task<Pedido> GetById(Guid id) => _pedidoRepository.GetById(id);
 
-    public Task Post(Pedido pedido) => _pedidoRepository.Create(pedido);
+    public async Task<Pedido> Post(Pedido pedido)
+    {
+        await _pedidoRepository.Create(pedido);
+        await _pedidoRepository.SaveChanges();
+        return pedido;
+    }
 
-    public void Put(Pedido pedido) => _pedidoRepository.Update(pedido);
+    public async Task<Pedido> Put(Pedido pedido)
+    {
+        _pedidoRepository.Update(pedido);
+        await _pedidoRepository.SaveChanges();
+        return pedido;
+    }
 
-    public void Delete(Guid id) => _pedidoRepository.Delete(id);
+    public async Task<Pedido> Delete(Guid id)
+    {
+        var pedido = await _pedidoRepository.GetById(id);
+        _pedidoRepository.Delete(id);
+        await _pedidoRepository.SaveChanges();
+        return pedido;
+    }
 }

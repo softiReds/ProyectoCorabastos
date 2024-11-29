@@ -17,9 +17,25 @@ public class CarritoComprasProductoService : ICarritoComprasProductoService
     public Task<CarritoComprasProducto> GetById(Guid carritoComprasId, Guid productoId)
         => _carritoComprasProductoRepository.GetById(carritoComprasId, productoId);
 
-    public Task Post(CarritoComprasProducto carritoComprasProducto) => _carritoComprasProductoRepository.Create(carritoComprasProducto);
+    public async Task<CarritoComprasProducto> Post(CarritoComprasProducto carritoComprasProducto)
+    {
+        await _carritoComprasProductoRepository.Create(carritoComprasProducto);
+        await _carritoComprasProductoRepository.SaveChanges();
+        return carritoComprasProducto;
+    }
 
-    public void Put(CarritoComprasProducto carritoComprasProducto) => _carritoComprasProductoRepository.Update(carritoComprasProducto);
+    public async Task<CarritoComprasProducto> Put(CarritoComprasProducto carritoComprasProducto)
+    {
+        _carritoComprasProductoRepository.Update(carritoComprasProducto);
+        await _carritoComprasProductoRepository.SaveChanges();
+        return carritoComprasProducto;
+    }
 
-    public void Delete(Guid carritoComprasId, Guid productoId) => _carritoComprasProductoRepository.Delete(carritoComprasId, productoId);
+    public async Task<CarritoComprasProducto> Delete(Guid carritoComprasId, Guid productoId)
+    {
+        var carritoComprasProducto = await _carritoComprasProductoRepository.GetById(carritoComprasId, productoId);
+        _carritoComprasProductoRepository.Delete(carritoComprasId, productoId);
+        await _carritoComprasProductoRepository.SaveChanges();
+        return carritoComprasProducto;
+    }
 }

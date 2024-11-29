@@ -6,7 +6,7 @@ public interface ICiudadService
 {
     Task<List<Ciudad>> Get();
     Task<Ciudad> GetById(Guid id);
-    Task Post(Ciudad ciudad);
-    void Put(Ciudad ciudad);
-    void Delete(Guid id);
+    Task<Ciudad> Post(Ciudad ciudad);
+    Task<Ciudad> Put(Ciudad ciudad);
+    Task<Ciudad> Delete(Guid id);
 }
