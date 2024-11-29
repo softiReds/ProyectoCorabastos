@@ -19,7 +19,9 @@ public class CarritoComprasProductoRepository : IRepository<CarritoComprasProduc
         => throw new NotSupportedException("Use el método GetById(Guid carritoComprasId, Guid productoId).");
 
     public async Task<CarritoComprasProducto> GetById(Guid carritoComprasId, Guid productoId) =>
-        await _dbContext.CarritoComprasProductos.FindAsync(new object[] { carritoComprasId, productoId });
+        await _dbContext.CarritoComprasProductos
+            .AsNoTracking()
+            .FirstOrDefaultAsync(cp => cp.CarritoComprasId == carritoComprasId && cp.ProductoId == productoId);
 
     public async Task Create(CarritoComprasProducto entidad) => await _dbContext.CarritoComprasProductos.AddAsync(entidad);
 
